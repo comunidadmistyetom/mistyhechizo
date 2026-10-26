@@ -3,32 +3,30 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#170821">
 <title>¡Libera a Misty y gana tu premio!</title>
 
 <style>
 :root {
-  --violeta: #a855f7;
-  --violeta-claro: #e4b7ff;
-  --naranja: #ff8a22;
-  --fondo: #100817;
-  --panel: #24112f;
+  --purple: #a855f7;
+  --light-purple: #edccff;
+  --orange: #ff922e;
+  --dark: #100817;
 }
 
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 body {
   margin: 0;
   min-height: 100vh;
   color: white;
   background:
-    radial-gradient(ellipse at top, #46205c 0%, #170c22 48%, #09060d 100%);
+    linear-gradient(#100817bb, #100817ed),
+    url("fondo-halloween.png") center / cover fixed,
+    #100817;
   font-family: system-ui, Arial, sans-serif;
   text-align: center;
-  overflow-x: hidden;
 }
 
 button {
@@ -37,418 +35,317 @@ button {
   touch-action: manipulation;
 }
 
-button:focus-visible {
-  outline: 3px solid white;
-  outline-offset: 4px;
-}
-
-button:disabled {
-  opacity: .55;
-  cursor: default;
-}
-
-.hidden {
-  display: none !important;
-}
+button:disabled { opacity: .5; }
 
 .app {
   width: 100%;
   max-width: 760px;
   min-height: 100vh;
   margin: auto;
-  padding: 16px;
-  position: relative;
+  padding: 18px 14px 28px;
   overflow: hidden;
 }
 
 .screen {
   display: none;
-  min-height: calc(100vh - 32px);
+  min-height: calc(100vh - 46px);
   flex-direction: column;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   gap: 18px;
-  animation: appear .45s ease both;
+  animation: enter .4s ease;
 }
 
-.screen.active {
-  display: flex;
-}
+.screen.active { display: flex; }
 
-@keyframes appear {
-  from { opacity: 0; transform: translateY(10px); }
+@keyframes enter {
+  from { opacity: 0; transform: translateY(8px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
-h1, h2, p {
-  margin: 0;
-}
-
 h1 {
-  font-size: clamp(2rem, 8vw, 3.7rem);
-  line-height: 1.05;
-  text-shadow: 0 0 22px #a855f7;
+  margin: 0;
+  font-size: clamp(2rem, 8vw, 3.6rem);
+  line-height: 1.06;
+  text-shadow: 0 0 22px #b65bff;
 }
 
 h2 {
-  font-size: clamp(1.5rem, 5vw, 2.2rem);
-  color: var(--violeta-claro);
+  margin: 0;
+  color: var(--light-purple);
+  font-size: clamp(1.5rem, 6vw, 2.25rem);
 }
 
-p {
-  line-height: 1.55;
-}
-
-.intro {
-  max-width: 520px;
-  color: #f2e7fa;
-  font-size: 1rem;
-}
+p { line-height: 1.55; margin: 0; }
 
 .eyebrow {
   color: #ffc078;
   font-size: .8rem;
   font-weight: 900;
-  letter-spacing: 3px;
-  text-transform: uppercase;
+  letter-spacing: 2px;
 }
 
 .art {
   display: block;
-  object-fit: contain;
   max-width: 100%;
   height: auto;
-  user-select: none;
-  -webkit-user-drag: none;
+  object-fit: contain;
 }
 
 .cover-art {
-  width: min(88%, 440px);
-  max-height: 43vh;
-  object-fit: contain;
-  filter: drop-shadow(0 0 22px #9e45ff80);
+  width: min(90%, 420px);
+  max-height: 40vh;
+  filter: drop-shadow(0 0 24px #a855f780);
 }
 
 .title-art {
-  width: min(95%, 530px);
-  max-height: 18vh;
-  object-fit: contain;
+  width: min(95%, 520px);
+  max-height: 17vh;
+}
+
+.intro {
+  width: min(100%, 520px);
+  color: #f4e7fc;
+  font-size: 1rem;
 }
 
 .main-btn {
-  width: min(100%, 380px);
-  min-height: 56px;
-  padding: 15px 20px;
-  border: 2px solid #f0c7ff;
-  border-radius: 16px;
+  width: min(100%, 390px);
+  min-height: 55px;
+  padding: 14px 18px;
+  border: 2px solid #e7b8ff;
+  border-radius: 15px;
   color: white;
   font-weight: 900;
-  letter-spacing: .5px;
-  background: linear-gradient(135deg, #a855f7, #6721a0);
-  box-shadow: 0 0 22px #a855f766, inset 0 1px #ffffff50;
-  transition: transform .2s, filter .2s;
+  background: linear-gradient(135deg, #a855f7, #61218e);
+  box-shadow: 0 0 20px #a855f755;
 }
 
-.main-btn:active {
-  transform: scale(.97);
-}
-
-.orange-btn {
-  background: linear-gradient(135deg, #ff9b32, #b8480c);
-  border-color: #ffd19b;
-}
-
-.secondary-btn {
-  width: min(100%, 320px);
-  padding: 12px 18px;
-  border: 1px solid #a855f7;
-  border-radius: 12px;
-  color: white;
-  background: #291637;
-  font-weight: 700;
+.main-btn.orange {
+  background: linear-gradient(135deg, #ff9f43, #bd490d);
+  border-color: #ffd3a0;
 }
 
 .panel {
   width: 100%;
-  padding: 22px 16px;
-  border: 1px solid #a855f766;
+  padding: 20px 16px;
+  border: 1px solid #a855f777;
   border-radius: 22px;
-  background: #160c20d9;
-  box-shadow: 0 0 28px #8d37c326;
-}
-
-.story {
-  max-width: 520px;
-  color: #f4eafa;
-  font-size: 1.02rem;
+  background: #180d24ed;
+  box-shadow: 0 0 25px #a855f722;
 }
 
 .scene {
-  position: relative;
   width: 100%;
-  min-height: 280px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  isolation: isolate;
+  min-height: 260px;
+  position: relative;
+  display: grid;
+  place-items: center;
 }
 
 .trapped-cat {
-  width: min(74%, 350px);
-  max-height: 43vh;
-  filter: drop-shadow(0 0 24px #bd67ff90);
-  z-index: 2;
+  width: min(80%, 350px);
+  max-height: 40vh;
+  filter: drop-shadow(0 0 20px #c16aff88);
 }
 
-.spell-ray {
+.ray {
   position: absolute;
-  z-index: 3;
   width: 100%;
-  max-height: 70%;
+  max-height: 65%;
   object-fit: contain;
   pointer-events: none;
-  animation: rayFlash .6s ease-in-out infinite alternate;
+  animation: glow .4s alternate infinite;
 }
 
-@keyframes rayFlash {
-  from { opacity: .5; filter: brightness(1); }
+@keyframes glow {
+  from { opacity: .6; }
   to { opacity: 1; filter: brightness(1.8); }
 }
 
-.magic-orb {
-  position: absolute;
-  width: min(84%, 380px);
-  max-height: 46vh;
-  object-fit: contain;
-  z-index: 4;
-  pointer-events: none;
-  filter: drop-shadow(0 0 18px #bd5cff);
-}
-
 .crystal-stage {
+  width: min(100%, 440px);
+  min-height: 270px;
   position: relative;
-  width: min(100%, 450px);
-  min-height: 300px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: grid;
+  place-items: center;
 }
 
 .crystal-cat {
   position: absolute;
-  width: 54%;
-  max-height: 34vh;
+  width: 48%;
+  max-height: 32vh;
   object-fit: contain;
-  z-index: 1;
 }
 
 .crystal-image {
   position: relative;
-  z-index: 2;
-  width: 80%;
-  max-height: 44vh;
+  width: 85%;
+  max-height: 43vh;
   object-fit: contain;
-  filter: drop-shadow(0 0 25px #a855f7);
+  filter: drop-shadow(0 0 20px #b96aff);
 }
 
-.shake {
-  animation: shake .12s linear infinite;
-}
+.shake { animation: shake .1s linear infinite; }
 
 @keyframes shake {
-  0%, 100% { transform: translate(0,0) rotate(0); }
+  0%,100% { transform: translate(0); }
   25% { transform: translate(4px,-3px) rotate(1deg); }
   50% { transform: translate(-4px,2px) rotate(-1deg); }
-  75% { transform: translate(3px,3px) rotate(.5deg); }
+  75% { transform: translate(3px,3px); }
 }
 
-.flash {
-  animation: flash .8s ease both;
-}
+.flash { animation: flash .7s ease; }
 
 @keyframes flash {
-  0% { filter: brightness(1); }
-  35% { filter: brightness(3); }
+  40% { filter: brightness(3); }
   100% { filter: brightness(1); }
 }
 
 .potion-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0,1fr));
   gap: 10px;
   width: 100%;
   max-width: 520px;
 }
 
-.potion-card {
+.potion {
   min-width: 0;
   padding: 12px 5px;
+  border: 1px solid #bd83eb;
+  border-radius: 17px;
   color: white;
-  border: 1px solid #ffffff26;
-  border-radius: 18px;
-  background: linear-gradient(180deg, #382047, #1a1024);
-  transition: transform .2s, border .2s;
+  background: linear-gradient(#382047, #1b1024);
 }
 
-.potion-card:active {
-  transform: scale(.95);
-}
-
-.potion-card img {
+.potion img {
   width: 100%;
-  height: 120px;
+  height: 115px;
   object-fit: contain;
 }
 
-.potion-card span {
+.potion .fallback {
+  display: none;
+  height: 115px;
+  place-content: center;
+  font-size: 4rem;
+}
+
+.potion span {
   display: block;
-  font-size: .9rem;
   font-weight: 800;
-  margin-top: 8px;
+  margin-top: 7px;
 }
 
-.potion-card.purple { border-color: #c78cff; }
-.potion-card.green { border-color: #70e7a0; }
-.potion-card.orange { border-color: #ffb35c; }
+.green { border-color: #70e7a0; }
+.orange-potion { border-color: #ffb35c; }
 
-.progress-text {
+.message {
   min-height: 28px;
-  color: #f4d9ff;
   font-weight: 800;
+  color: #f0d7ff;
 }
 
-.victory-art {
-  width: min(76%, 340px);
-  max-height: 35vh;
-  object-fit: contain;
-  filter: drop-shadow(0 0 24px #d9a2ff);
-}
+.hidden { display: none !important; }
 
 .chest-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0,1fr));
   gap: 12px;
   width: 100%;
-  max-width: 560px;
+  max-width: 550px;
 }
 
-.chest-card {
+.chest {
   min-width: 0;
-  position: relative;
-  min-height: 130px;
-  padding: 8px 4px;
-  overflow: hidden;
-  color: white;
-  border: 1px solid #9f62c7;
+  padding: 9px 4px;
+  min-height: 125px;
+  border: 1px solid #a855f7;
   border-radius: 16px;
-  background:
-    radial-gradient(ellipse at 50% 25%, #552b71, #21112c 75%);
-  box-shadow: inset 0 0 16px #8e42c72b;
-  transition: transform .2s, border .2s;
+  background: radial-gradient(#51266a, #21102c);
+  color: white;
 }
 
-.chest-card:active {
-  transform: scale(.95);
-}
-
-.chest-card img {
+.chest img {
   width: 100%;
-  height: 95px;
+  height: 90px;
   object-fit: contain;
-  filter: drop-shadow(0 0 9px #b967ff50);
 }
 
-.chest-card .chest-number {
+.chest strong {
   display: block;
-  font-weight: 900;
-  color: #ffd49a;
+  color: #ffd69e;
 }
 
-.chest-card.opened {
-  border-color: #ffce6b;
-  animation: chestWin .5s ease;
+.chest.selected {
+  border: 2px solid #ffe08a;
+  animation: chest .5s ease;
 }
 
-@keyframes chestWin {
-  50% { transform: scale(1.09); filter: brightness(1.7); }
+@keyframes chest {
+  50% { transform: scale(1.08); filter: brightness(1.8); }
 }
 
-.chest-card.opened img {
-  filter: drop-shadow(0 0 20px #ffc55c);
-}
-
-.prize-result {
+.result-card {
   width: 100%;
-  max-width: 540px;
-  padding: 24px 14px;
-  border: 2px solid #e5a4ff;
+  max-width: 530px;
+  padding: 20px 14px;
+  border: 2px solid #d9a0ff;
   border-radius: 24px;
-  background:
-    radial-gradient(ellipse at top, #602a7d, #201029 75%);
-  box-shadow: 0 0 35px #ac4bff4a;
+  background: radial-gradient(#5a2875, #1b0d25 78%);
+  box-shadow: 0 0 32px #a855f755;
 }
 
-.prize-frame {
+.frame {
   width: 100%;
-  max-height: 120px;
+  max-height: 115px;
   object-fit: contain;
-  margin: 0 auto 10px;
-}
-
-.prize-value {
-  color: #ffe1a0;
-  font-size: clamp(2rem, 9vw, 3.6rem);
-  line-height: 1.15;
-  font-weight: 1000;
-  text-shadow: 0 0 20px #ff8a22a0;
-  overflow-wrap: anywhere;
-}
-
-.prize-type {
-  margin-top: 8px;
-  color: #f8eafa;
 }
 
 .misty-small {
-  width: min(45%, 180px);
+  width: min(50%, 190px);
   max-height: 180px;
-  object-fit: contain;
   margin: 8px auto;
 }
 
-.wa-buttons {
+.prize-value {
+  margin: 12px 0;
+  color: #ffe19b;
+  font-size: clamp(2rem, 9vw, 3.4rem);
+  line-height: 1.15;
+  font-weight: 1000;
+  overflow-wrap: anywhere;
+  text-shadow: 0 0 18px #ff922e88;
+}
+
+.whatsapp {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 10px;
   width: 100%;
-  max-width: 460px;
+  max-width: 450px;
 }
 
 .wa-btn {
-  min-height: 55px;
-  border: 1px solid #a5f1c0;
+  min-height: 54px;
+  border: 1px solid #a7f2c0;
   border-radius: 14px;
-  color: #fff;
-  font-weight: 900;
+  color: white;
   background: linear-gradient(135deg, #25b967, #08763c);
+  font-weight: 900;
 }
 
-.capture-note {
-  font-size: .88rem;
-  color: #d9c8e4;
-}
-
-.small-note {
-  color: #cbb5d8;
-  font-size: .8rem;
+.note {
+  font-size: .85rem;
+  color: #d9c5e7;
 }
 
 .particles {
   position: absolute;
   inset: 0;
-  pointer-events: none;
   overflow: hidden;
-  z-index: 5;
+  pointer-events: none;
 }
 
 .particle {
@@ -456,252 +353,130 @@ p {
   width: 9px;
   height: 9px;
   border-radius: 50%;
-  background: #ffd77b;
+  background: #ffdb7d;
   box-shadow: 0 0 14px #ffad39;
   animation: fly 1.4s ease-out forwards;
 }
 
 @keyframes fly {
-  from { opacity: 1; transform: translate(0,0) scale(1); }
-  to { opacity: 0; transform: translate(var(--dx), var(--dy)) scale(.1); }
-}
-
-@media (max-width: 380px) {
-  .app { padding: 10px; }
-  .screen { min-height: calc(100vh - 20px); gap: 13px; }
-  .potion-card img { height: 90px; }
-  .chest-grid { gap: 7px; }
-  .chest-card { min-height: 110px; }
-  .chest-card img { height: 76px; }
-  .panel { padding: 17px 12px; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: .01ms !important;
-    animation-iteration-count: 1 !important;
-    scroll-behavior: auto !important;
+  to {
+    opacity: 0;
+    transform: translate(var(--dx),var(--dy)) scale(.1);
   }
 }
 
-@media print {
-  body { background: #100817 !important; }
-  .app { max-width: none; }
-  .screen { display: none !important; }
-  #screen-prize { display: flex !important; }
-  #screen-prize .main-btn,
-  #screen-prize .secondary-btn,
-  #screen-prize .wa-buttons,
-  #screen-prize .capture-note,
-  #screen-prize .small-note { display: none !important; }
+@media(max-width:380px) {
+  .app { padding: 12px 9px; }
+  .screen { gap: 13px; }
+  .potion img, .potion .fallback { height: 88px; }
+  .chest-grid { gap: 7px; }
+  .chest { min-height: 105px; }
+  .chest img { height: 73px; }
 }
 </style>
 </head>
 
 <body>
-<div class="app">
+<main class="app">
 
-  <!-- PANTALLA 1: PORTADA -->
-  <section class="screen active" id="screen-cover">
-    <div class="eyebrow">🎃 Especial de Halloween 🎃</div>
-
-    <img class="art cover-art"
-         src="imagenes/misty-bruja.png"
-         alt="Misty y la bruja">
-
-    <img class="art title-art"
-         src="imagenes/titulo-juego.png"
-         alt="Libera a Misty y gana tu premio"
+  <section class="screen active" id="cover">
+    <div class="eyebrow">🎃 ESPECIAL DE HALLOWEEN 🎃</div>
+    <img class="art cover-art" src="misty-bruja.png" alt="Misty y la bruja">
+    <img class="art title-art" src="titulo-juego.png" alt=""
          onerror="this.style.display='none'">
-
     <h1>¡LIBERA A MISTY<br>Y GANA TU PREMIO!</h1>
-
-    <p class="intro">
-      Un hechizo, tres pociones y seis cofres misteriosos.
-      ¿Estás listo para ayudar a Misty?
-    </p>
-
-    <button class="main-btn orange-btn" id="start-btn">
-      🎃 COMENZAR A JUGAR
-    </button>
-
-    <p class="small-note">💜 Comunidad Misty 💜</p>
+    <p class="intro">Un hechizo, tres pociones y seis cofres misteriosos. ¿Ayudarás a Misty?</p>
+    <button class="main-btn orange" id="start">🎃 COMENZAR A JUGAR</button>
+    <p class="note">💜 COMUNIDAD MISTY 💜</p>
   </section>
 
-
-  <!-- PANTALLA 2: EL HECHIZO -->
-  <section class="screen" id="screen-spell">
-    <div class="eyebrow">Capítulo 1 · El hechizo</div>
+  <section class="screen" id="spell">
+    <div class="eyebrow">CAPÍTULO 1 · EL HECHIZO</div>
     <h2>¡OH, NO! 😱</h2>
-
     <div class="scene">
-      <img class="art trapped-cat"
-           src="imagenes/misty-atrapada.png"
-           alt="Misty atrapada en el hechizo">
-
-      <img class="art spell-ray hidden"
-           id="spell-ray"
-           src="imagenes/rayo-magico.png"
-           alt="">
+      <img class="art trapped-cat" src="misty-atrapada.png" alt="Misty atrapada">
+      <img class="art ray hidden" id="ray" src="Rayo-magico.png" alt="">
     </div>
-
     <div class="panel">
-      <p class="story">
-        La bruja ha atrapado a Misty con un poderoso hechizo.
-        ¡Ayudala a escapar y descubrí qué premio te espera!
-      </p>
+      <p>La bruja ha atrapado a Misty con un poderoso hechizo. ¡Ayudala a escapar y descubrí qué premio te espera!</p>
     </div>
-
-    <button class="main-btn" id="save-btn">
-      🔮 ¡SALVAR A MISTY!
-    </button>
+    <button class="main-btn" id="save">🔮 ¡SALVAR A MISTY!</button>
   </section>
 
-
-  <!-- PANTALLA 3: LAS POCIONES -->
-  <section class="screen" id="screen-potions">
-    <div class="eyebrow">Capítulo 2 · La magia</div>
+  <section class="screen" id="potions">
+    <div class="eyebrow">CAPÍTULO 2 · LA MAGIA</div>
     <h2>Elegí una poción</h2>
-
-    <p class="intro">
-      ¡Una de estas pociones puede romper el hechizo!
-      Tocá la que quieras probar.
-    </p>
+    <p class="intro">¡Una poción puede romper el hechizo! Tocá la que quieras probar.</p>
 
     <div class="crystal-stage" id="crystal-stage">
-      <img class="crystal-cat"
-           src="imagenes/misty-atrapada.png"
-           alt="Misty dentro del cristal">
-
-      <img class="crystal-image"
-           id="crystal-image"
-           src="imagenes/bola-cristal.png"
-           alt="Bola de cristal mágica">
-
-      <div class="particles" id="magic-particles"></div>
+      <img class="crystal-cat" src="misty-atrapada.png" alt="">
+      <img class="crystal-image" id="crystal" src="bola-cristal.png" alt="Bola de cristal">
+      <div class="particles" id="particles"></div>
     </div>
 
     <div class="potion-grid" id="potion-grid">
-      <button class="potion-card purple" data-potion="violeta">
-        <img src="imagenes/pocion-violeta.png" alt="">
+      <button class="potion" data-color="violeta">
+        <img src="Pocion-violeta.png" alt="Poción violeta"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
+        <div class="fallback">🧪</div>
         <span>💜 Violeta</span>
       </button>
 
-      <button class="potion-card green" data-potion="verde">
-        <img src="imagenes/pocion-verde.png" alt="">
+      <button class="potion green" data-color="verde">
+        <img src="Pocion-verde.png" alt="Poción verde"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
+        <div class="fallback">🧪</div>
         <span>💚 Verde</span>
       </button>
 
-      <button class="potion-card orange" data-potion="naranja">
-        <img src="imagenes/pocion-naranja.png" alt="">
+      <button class="potion orange-potion" data-color="naranja">
+        <img src="Pocion-naranja.png" alt="Poción naranja"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
+        <div class="fallback">🧪</div>
         <span>🧡 Naranja</span>
       </button>
     </div>
 
-    <p class="progress-text" id="magic-message" aria-live="polite">
-      ¡La magia está en tus manos!
-    </p>
-
-    <button class="main-btn hidden" id="continue-chests-btn">
-      🎁 ¡BUSCAR MI PREMIO!
-    </button>
+    <p class="message" id="magic-message">¡La magia está en tus manos!</p>
+    <button class="main-btn hidden" id="to-chests">🎁 ¡BUSCAR MI PREMIO!</button>
   </section>
 
-
-  <!-- PANTALLA 4: LOS COFRES -->
-  <section class="screen" id="screen-chests">
-    <div class="eyebrow">Capítulo 3 · La recompensa</div>
+  <section class="screen" id="chests">
+    <div class="eyebrow">CAPÍTULO 3 · LA RECOMPENSA</div>
     <h2>🎃 ¡Misty tiene un regalo!</h2>
-
-    <p class="intro">
-      Elegí uno de los seis cofres y descubrí el premio
-      que te tocó. ¡Mucha suerte! 🍀
-    </p>
-
-    <div class="chest-grid" id="chest-grid">
-      <!-- Los seis cofres se crean desde JavaScript -->
-    </div>
-
-    <p class="small-note" id="chest-message" aria-live="polite">
-      Elegí con cuidado: solo podés abrir un cofre.
-    </p>
+    <p class="intro">Elegí uno de los seis cofres y descubrí tu premio. ¡Mucha suerte! 🍀</p>
+    <div class="chest-grid" id="chest-grid"></div>
+    <p class="message" id="chest-message">¡Podés probar todos los cofres durante esta versión de prueba!</p>
   </section>
 
-
-  <!-- PANTALLA 5: PREMIO Y RECLAMO -->
-  <section class="screen" id="screen-prize">
-    <div class="eyebrow">💜 Comunidad Misty 💜</div>
-
-    <div class="prize-result" id="prize-capture">
-      <h2 id="prize-heading">¡FELICITACIONES! 🎉</h2>
-
-      <img class="prize-frame"
-           src="imagenes/marco-premio.png"
-           alt=""
+  <section class="screen" id="prize">
+    <div class="eyebrow">💜 COMUNIDAD MISTY 💜</div>
+    <div class="result-card" id="capture">
+      <h2>¡FELICITACIONES! 🎉</h2>
+      <img class="art frame" src="marco-premio.png" alt=""
            onerror="this.style.display='none'">
-
-      <img class="art misty-small"
-           src="imagenes/misty-premio.png"
-           alt="Misty con tu recompensa"
-           onerror="this.src='imagenes/misty-libre.png'">
-
+      <img class="art misty-small" src="misty-premio.png" alt="Misty con tu premio"
+           onerror="this.onerror=null;this.src='Misty-libre.png'">
       <p>¡Misty te preparó una sorpresa!</p>
-
       <div class="prize-value" id="prize-value">¡PREMIO!</div>
-      <p class="prize-type" id="prize-description">
-        Guardá una captura de esta pantalla.
-      </p>
+      <p id="prize-description">¡Guardá una captura de tu premio!</p>
     </div>
 
-    <p class="capture-note">
-      📸 Sacá una captura de tu premio y enviásela a la cajera.
-    </p>
-
-    <div class="wa-buttons">
-      <button class="wa-btn" id="wa-line-1">📲 LÍNEA 1</button>
-      <button class="wa-btn" id="wa-line-2">📲 LÍNEA 2</button>
+    <p class="note">📸 Sacá una captura de pantalla para mostrar tu premio.</p>
+    <div class="whatsapp">
+      <button class="wa-btn" id="wa1">📲 LÍNEA 1</button>
+      <button class="wa-btn" id="wa2">📲 LÍNEA 2</button>
     </div>
-
-    <p class="small-note">
-      Al reclamar, enviá la captura para que puedan verificar tu premio.
-    </p>
+    <p class="note">Los enlaces de WhatsApp se configuran en el código.</p>
+    <button class="main-btn" id="again">🔄 VOLVER A JUGAR (PRUEBA)</button>
   </section>
 
-
-  <!-- PANTALLA: YA PARTICIPASTE -->
-  <section class="screen" id="screen-used">
-    <div class="eyebrow">💜 Comunidad Misty 💜</div>
-    <h2>¡Ya abriste tu cofre! 🎃</h2>
-
-    <img class="art victory-art"
-         src="imagenes/misty-libre.png"
-         alt="Misty">
-
-    <div class="panel">
-      <p>Tu premio guardado es:</p>
-      <div class="prize-value" id="previous-prize"></div>
-      <p class="capture-note">
-        Si todavía necesitás reclamarlo, continuá a la pantalla de tu premio.
-      </p>
-    </div>
-
-    <button class="main-btn" id="show-previous-btn">
-      VER MI PREMIO
-    </button>
-  </section>
-
-</div>
+</main>
 
 <script>
-/* ==================================================
-   CONFIGURACIÓN DEL JUEGO
-   Podés modificar premios, probabilidades y enlaces.
-   ================================================== */
+/* ================= CONFIGURACIÓN ================= */
 
 const CONFIG = {
-  // Los pesos determinan la probabilidad relativa.
-  // Si todos son 1, los seis premios tienen igual probabilidad.
-  // Ejemplo: peso 2 tiene el doble de posibilidades que peso 1.
   premios: [
     { nombre: "10% DE BONO", descripcion: "¡Disfrutá tu bonificación!", peso: 1 },
     { nombre: "15% DE BONO", descripcion: "¡Una recompensa mágica!", peso: 1 },
@@ -711,375 +486,221 @@ const CONFIG = {
     { nombre: "1.000 FICHAS", descripcion: "¡1.000 fichas de regalo!", peso: 1 }
   ],
 
-  // Reemplazá estos enlaces por los tuyos.
-  whatsappLinea1: "https://wa.me/",
-  whatsappLinea2: "https://wa.me/",
-
-  // Cambiá esta clave si querés iniciar una nueva prueba
-  // para tu propio navegador. No es un sistema de identidad.
-  claveParticipacion: "mistyHalloweenParticipacionV1"
+  // Pegá acá los enlaces reales cuando quieras activarlos.
+  whatsappLinea1: "",
+  whatsappLinea2: ""
 };
 
+/* ================ NAVEGACIÓN ====================== */
 
-/* ==================================================
-   REFERENCIAS A PANTALLAS Y ELEMENTOS
-   ================================================== */
+const ids = ["cover", "spell", "potions", "chests", "prize"];
 
-const screens = {
-  cover: document.getElementById("screen-cover"),
-  spell: document.getElementById("screen-spell"),
-  potions: document.getElementById("screen-potions"),
-  chests: document.getElementById("screen-chests"),
-  prize: document.getElementById("screen-prize"),
-  used: document.getElementById("screen-used")
-};
-
-let prizeSelected = null;
-let selectedChest = null;
-let animationRunning = false;
-let openedPrize = null;
-
-function showScreen(name) {
-  Object.values(screens).forEach(screen => {
-    screen.classList.remove("active");
-  });
-
-  screens[name].classList.add("active");
+function show(id) {
+  ids.forEach(name => document.getElementById(name).classList.remove("active"));
+  document.getElementById(id).classList.add("active");
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
+document.getElementById("start").onclick = () => show("spell");
+document.getElementById("save").onclick = () => {
+  resetMagic();
+  show("potions");
+};
+document.getElementById("to-chests").onclick = () => {
+  buildChests();
+  show("chests");
+};
 
-/* ==================================================
-   GUARDAR Y RECUPERAR LA PARTICIPACIÓN
-   ================================================== */
+/* ================ EFECTOS MÁGICOS ================= */
 
-function readParticipation() {
-  try {
-    const raw = localStorage.getItem(CONFIG.claveParticipacion);
-    return raw ? JSON.parse(raw) : null;
-  } catch (error) {
-    return null;
-  }
+let magicDone = false;
+let chestOpened = false;
+let currentPrize = null;
+
+const crystal = document.getElementById("crystal");
+const stage = document.getElementById("crystal-stage");
+const ray = document.getElementById("ray");
+const message = document.getElementById("magic-message");
+const potionButtons = [...document.querySelectorAll(".potion")];
+
+function wait(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-function saveParticipation(data) {
-  try {
-    localStorage.setItem(
-      CONFIG.claveParticipacion,
-      JSON.stringify(data)
-    );
-    return true;
-  } catch (error) {
-    return false;
-  }
-}
-
-function showSavedParticipation(data) {
-  openedPrize = data;
-  document.getElementById("previous-prize").textContent =
-    data.prize || "Premio guardado";
-
-  showScreen("used");
-}
-
-document.getElementById("start-btn").addEventListener("click", () => {
-  const previous = readParticipation();
-
-  if (previous && previous.prize) {
-    showSavedParticipation(previous);
-    return;
-  }
-
-  showScreen("spell");
-});
-
-document.getElementById("save-btn").addEventListener("click", () => {
-  showScreen("potions");
-});
-
-
-/* ==================================================
-   HECHIZO Y ANIMACIÓN DE LA ESFERA
-   ================================================== */
-
-const crystalImage = document.getElementById("crystal-image");
-const crystalStage = document.getElementById("crystal-stage");
-const magicMessage = document.getElementById("magic-message");
-const potionButtons = [...document.querySelectorAll(".potion-card")];
-const continueChestsBtn = document.getElementById("continue-chests-btn");
-
-function createParticles(container, amount = 28) {
-  for (let i = 0; i < amount; i++) {
-    const particle = document.createElement("span");
-    particle.className = "particle";
-
-    particle.style.left = (10 + Math.random() * 80) + "%";
-    particle.style.top = (25 + Math.random() * 50) + "%";
-    particle.style.setProperty("--dx", (Math.random() * 240 - 120) + "px");
-    particle.style.setProperty("--dy", (Math.random() * 260 - 130) + "px");
-    particle.style.animationDelay = (Math.random() * .3) + "s";
-
-    container.appendChild(particle);
-    setTimeout(() => particle.remove(), 1900);
-  }
-}
-
-function preloadImage(src) {
+function imageExists(src) {
   return new Promise(resolve => {
-    const image = new Image();
-    image.onload = () => resolve(true);
-    image.onerror = () => resolve(false);
-    image.src = src;
+    const img = new Image();
+    img.onload = () => resolve(true);
+    img.onerror = () => resolve(false);
+    img.src = src;
   });
 }
 
-async function choosePotion(color) {
-  if (animationRunning) return;
+function particles(amount) {
+  const area = document.getElementById("particles");
 
-  animationRunning = true;
+  for (let i = 0; i < amount; i++) {
+    const dot = document.createElement("span");
+    dot.className = "particle";
+    dot.style.left = (10 + Math.random() * 80) + "%";
+    dot.style.top = (20 + Math.random() * 60) + "%";
+    dot.style.setProperty("--dx", (Math.random() * 240 - 120) + "px");
+    dot.style.setProperty("--dy", (Math.random() * 240 - 120) + "px");
+    area.appendChild(dot);
+    setTimeout(() => dot.remove(), 1700);
+  }
+}
+
+function resetMagic() {
+  magicDone = false;
+  ray.classList.add("hidden");
+  stage.classList.remove("shake");
+  crystal.classList.remove("flash");
+  crystal.src = "bola-cristal.png";
+  crystal.alt = "Bola de cristal";
+  message.textContent = "¡La magia está en tus manos!";
+  document.getElementById("to-chests").classList.add("hidden");
+  potionButtons.forEach(button => button.disabled = false);
+}
+
+async function choosePotion() {
+  if (magicDone) return;
+  magicDone = true;
   potionButtons.forEach(button => button.disabled = true);
 
-  magicMessage.textContent = "✨ ¡La poción está lanzando su magia!";
+  message.textContent = "✨ ¡La poción está lanzando su magia!";
+  if (await imageExists("Rayo-magico.png")) ray.classList.remove("hidden");
 
-  // Mostrar el rayo, si el archivo existe.
-  const ray = document.getElementById("spell-ray");
-  ray.classList.remove("hidden");
+  await wait(700);
 
-  const rayAvailable = await preloadImage("imagenes/rayo-magico.png");
-  if (!rayAvailable) ray.classList.add("hidden");
-
-  await new Promise(resolve => setTimeout(resolve, 700));
-
-  // Grietas en el cristal.
-  const crackedAvailable = await preloadImage(
-    "imagenes/bola-cristal-grietas.png"
-  );
-
-  if (crackedAvailable) {
-    crystalImage.src = "imagenes/bola-cristal-grietas.png";
+  if (await imageExists("bola-cristal-grietas.png")) {
+    crystal.src = "bola-cristal-grietas.png";
   }
 
-  crystalStage.classList.add("shake");
-  createParticles(document.getElementById("magic-particles"), 25);
-  magicMessage.textContent = "⚡ ¡El cristal se está agrietando!";
+  stage.classList.add("shake");
+  particles(24);
+  message.textContent = "⚡ ¡El cristal se está agrietando!";
 
-  await new Promise(resolve => setTimeout(resolve, 1100));
+  await wait(1200);
+  stage.classList.remove("shake");
 
-  // Explosión.
-  crystalStage.classList.remove("shake");
-
-  const explosionAvailable = await preloadImage(
-    "imagenes/bola-cristal-explosion.png"
-  );
-
-  if (explosionAvailable) {
-    crystalImage.src = "imagenes/bola-cristal-explosion.png";
+  // Si todavía no existe el archivo de explosión,
+  // el efecto luminoso se hace con CSS.
+  if (await imageExists("bola-cristal-explosion.png")) {
+    crystal.src = "bola-cristal-explosion.png";
   } else {
-    crystalImage.classList.add("flash");
+    crystal.classList.add("flash");
   }
 
-  createParticles(document.getElementById("magic-particles"), 45);
-  magicMessage.textContent = "💥 ¡BOOOOM! ¡MISTY QUEDA LIBRE!";
+  particles(42);
+  message.textContent = "💥 ¡BOOOOM! ¡MISTY QUEDA LIBRE!";
 
-  await new Promise(resolve => setTimeout(resolve, 1100));
+  await wait(1000);
 
   ray.classList.add("hidden");
-  crystalStage.classList.remove("shake");
-  crystalImage.classList.remove("flash");
+  crystal.classList.remove("flash");
+  crystal.src = "Misty-libre.png";
+  crystal.alt = "¡Misty está libre!";
 
-  // Mostrar una última imagen de la esfera rota antes de avanzar.
-  const victoryAvailable = await preloadImage("imagenes/misty-libre.png");
-
-  if (victoryAvailable) {
-    crystalImage.src = "imagenes/misty-libre.png";
-    crystalImage.alt = "¡Misty está libre!";
-  }
-
-  magicMessage.textContent = "🐈‍⬛ ¡LO LOGRASTE! ¡LIBERASTE A MISTY!";
-
-  continueChestsBtn.classList.remove("hidden");
-  animationRunning = false;
+  message.textContent = "🐈‍⬛ ¡LO LOGRASTE! ¡LIBERASTE A MISTY!";
+  document.getElementById("to-chests").classList.remove("hidden");
 }
 
 potionButtons.forEach(button => {
-  button.addEventListener("click", () => {
-    choosePotion(button.dataset.potion);
-  });
+  button.addEventListener("click", choosePotion);
 });
 
-continueChestsBtn.addEventListener("click", () => {
-  showScreen("chests");
-});
+/* ================= PREMIOS ======================= */
 
+function randomPrize() {
+  const available = CONFIG.premios.filter(p => p.peso > 0);
+  const total = available.reduce((sum, p) => sum + p.peso, 0);
+  let value = Math.random() * total;
 
-/* ==================================================
-   PREMIOS ALEATORIOS
-   ================================================== */
-
-function selectRandomPrize() {
-  const prizes = CONFIG.premios;
-
-  const validPrizes = prizes.filter(prize =>
-    Number.isFinite(prize.peso) && prize.peso > 0
-  );
-
-  if (validPrizes.length === 0) {
-    throw new Error("Configurá al menos un premio con peso mayor que cero.");
+  for (const prize of available) {
+    value -= prize.peso;
+    if (value < 0) return prize;
   }
-
-  const totalWeight = validPrizes.reduce(
-    (sum, prize) => sum + prize.peso, 0
-  );
-
-  let random = Math.random() * totalWeight;
-
-  for (const prize of validPrizes) {
-    random -= prize.peso;
-    if (random < 0) return prize;
-  }
-
-  return validPrizes[validPrizes.length - 1];
+  return available[available.length - 1];
 }
 
+function buildChests() {
+  const grid = document.getElementById("chest-grid");
+  grid.innerHTML = "";
+  chestOpened = false;
+  currentPrize = null;
+  document.getElementById("chest-message").textContent =
+    "¡Elegí un cofre para descubrir tu premio!";
 
-/* ==================================================
-   CREAR LOS SEIS COFRES
-   ================================================== */
+  for (let i = 1; i <= 6; i++) {
+    const button = document.createElement("button");
+    button.className = "chest";
 
-const chestGrid = document.getElementById("chest-grid");
-const chestMessage = document.getElementById("chest-message");
+    const img = document.createElement("img");
+    img.src = "cofre-cerrado.png";
+    img.alt = "";
 
-for (let i = 1; i <= 6; i++) {
-  const button = document.createElement("button");
-  button.className = "chest-card";
-  button.type = "button";
-  button.setAttribute("aria-label", "Abrir cofre " + i);
+    const label = document.createElement("strong");
+    label.textContent = "COFRE " + i;
 
-  const image = document.createElement("img");
-  image.src = "imagenes/cofre-cerrado.png";
-  image.alt = "";
-  image.onerror = function() {
-    this.style.display = "none";
-  };
-
-  const number = document.createElement("span");
-  number.className = "chest-number";
-  number.textContent = "COFRE " + i;
-
-  button.append(image, number);
-  button.addEventListener("click", () => openChest(button, i));
-
-  chestGrid.appendChild(button);
-}
-
-function openChest(button, number) {
-  if (selectedChest !== null) return;
-
-  const existing = readParticipation();
-
-  if (existing && existing.prize) {
-    showSavedParticipation(existing);
-    return;
+    button.append(img, label);
+    button.onclick = () => openChest(button, i);
+    grid.appendChild(button);
   }
-
-  selectedChest = number;
-
-  // Seleccionamos y guardamos el resultado al elegir el cofre.
-  prizeSelected = selectRandomPrize();
-
-  openedPrize = {
-    chest: number,
-    prize: prizeSelected.nombre,
-    description: prizeSelected.descripcion,
-    date: new Date().toISOString()
-  };
-
-  // Guardar inmediatamente para evitar volver a elegir otro cofre.
-  const saved = saveParticipation(openedPrize);
-
-  button.classList.add("opened");
-
-  [...chestGrid.querySelectorAll("button")].forEach(chest => {
-    chest.disabled = true;
-  });
-
-  const image = button.querySelector("img");
-  image.src = "imagenes/cofre-abierto.png";
-
-  chestMessage.textContent = "✨ ¡Tu cofre está revelando la sorpresa!";
-
-  createParticles(
-    document.getElementById("magic-particles"),
-    0
-  );
-
-  setTimeout(() => {
-    if (!saved) {
-      chestMessage.textContent =
-        "No se pudo guardar el intento en este navegador. Evitá recargar la página.";
-    }
-
-    showPrize(openedPrize);
-  }, 1000);
 }
 
+async function openChest(button, number) {
+  if (chestOpened) return;
+  chestOpened = true;
 
-/* ==================================================
-   PANTALLA FINAL Y CAPTURA DEL PREMIO
-   ================================================== */
+  currentPrize = randomPrize();
 
-function showPrize(data) {
-  document.getElementById("prize-value").textContent = data.prize;
+  const gridButtons = [...document.querySelectorAll(".chest")];
+  gridButtons.forEach(b => b.disabled = true);
+
+  button.classList.add("selected");
+  button.querySelector("img").src = "Cofre-abierto.png";
+
+  document.getElementById("chest-message").textContent =
+    "✨ ¡El cofre " + number + " está revelando tu sorpresa!";
+
+  await wait(1100);
+
+  document.getElementById("prize-value").textContent = currentPrize.nombre;
   document.getElementById("prize-description").textContent =
-    data.description || "¡Guardá una captura de tu premio!";
+    currentPrize.descripcion;
 
-  showScreen("prize");
+  show("prize");
 }
 
-document.getElementById("show-previous-btn").addEventListener("click", () => {
-  const data = openedPrize || readParticipation();
+/* ================ VOLVER A JUGAR ================== */
 
-  if (data && data.prize) {
-    showPrize(data);
-  }
-});
+// MODO DE PRUEBA: no se guarda la participación.
+// Podés repetir el juego todas las veces que quieras.
+document.getElementById("again").onclick = () => {
+  resetMagic();
+  buildChests();
+  show("cover");
+};
 
-
-/* ==================================================
-   ENLACES DE WHATSAPP
-   ================================================== */
+/* ================= WHATSAPP ====================== */
 
 function openWhatsApp(url) {
-  if (!url || url === "https://wa.me/") {
-    alert("Todavía falta configurar el enlace de WhatsApp en el código.");
+  if (!url) {
+    alert("Todavía no configuraste este enlace de WhatsApp.");
     return;
   }
-
   window.open(url, "_blank", "noopener,noreferrer");
 }
 
-document.getElementById("wa-line-1").addEventListener("click", () => {
+document.getElementById("wa1").onclick = () =>
   openWhatsApp(CONFIG.whatsappLinea1);
-});
 
-document.getElementById("wa-line-2").addEventListener("click", () => {
+document.getElementById("wa2").onclick = () =>
   openWhatsApp(CONFIG.whatsappLinea2);
-});
 
-
-/* ==================================================
-   COMPROBAR SI YA PARTICIPÓ AL CARGAR LA PÁGINA
-   ================================================== */
-
-const previousParticipation = readParticipation();
-
-if (previousParticipation && previousParticipation.prize) {
-  openedPrize = previousParticipation;
-
-  // La portada sigue siendo visible al iniciar.
-  // Si toca comenzar, se mostrará el premio anterior.
-}
+// Crear los cofres iniciales.
+buildChests();
 </script>
 </body>
 </html>
-
