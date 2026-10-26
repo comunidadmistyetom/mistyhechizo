@@ -9,277 +9,314 @@
 
 <style>
 :root {
-  --violet: #a855f7;
-  --pale: #f0d2ff;
-  --orange: #ff922e;
-  --dark: #100817;
+  --violeta: #a855f7;
+  --lila: #edccff;
+  --naranja: #ff922e;
+  --fondo: #100817;
 }
+
 * { box-sizing: border-box; }
+
 body {
   margin: 0;
   min-height: 100vh;
   color: white;
   font-family: system-ui, Arial, sans-serif;
   text-align: center;
-  background: #100817;
+  background: radial-gradient(ellipse at top, #48205e, #100817 72%);
 }
-button { font: inherit; cursor: pointer; touch-action: manipulation; }
-button:disabled { opacity: .55; cursor: default; }
+
+button {
+  font: inherit;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+button:disabled { opacity: .55; }
 
 .app {
-  position: relative;
   width: 100%;
   max-width: 760px;
   min-height: 100svh;
   margin: auto;
-  padding: 16px;
+  padding: 15px;
   overflow: hidden;
+  position: relative;
   isolation: isolate;
   background:
-    linear-gradient(180deg, #10081788, #100817e8),
+    linear-gradient(#10081770, #100817c9),
     url("fondo-halloween.png") center / cover fixed,
-    radial-gradient(ellipse at top, #57266e, #100817 70%);
+    #100817;
 }
-.app::before {
-  content: "";
-  position: fixed;
-  z-index: -1;
-  inset: 0;
-  pointer-events: none;
-  background: radial-gradient(ellipse at 50% 35%, #7c2bb326, transparent 70%);
-}
+
 .screen {
   display: none;
-  min-height: calc(100svh - 32px);
+  min-height: calc(100svh - 30px);
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 17px;
-  animation: sceneIn .65s ease both;
+  animation: appear .5s ease both;
 }
+
 .screen.active { display: flex; }
-@keyframes sceneIn {
-  from { opacity: 0; transform: translateY(18px) scale(.985); }
-  to { opacity: 1; transform: translateY(0) scale(1); }
+
+@keyframes appear {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
 }
-.eyebrow {
-  color: #ffbd70;
-  font-size: .78rem;
-  font-weight: 900;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-}
+
 h1 {
   margin: 0;
   font-size: clamp(2rem, 8vw, 3.5rem);
-  line-height: 1.05;
-  text-shadow: 0 0 26px #b653ff;
+  line-height: 1.06;
+  text-shadow: 0 0 22px #b653ff;
 }
+
 h2 {
   margin: 0;
-  font-size: clamp(1.5rem, 6vw, 2.25rem);
-  color: var(--pale);
-  text-shadow: 0 0 15px #9d42df70;
+  color: var(--lila);
+  font-size: clamp(1.5rem, 6vw, 2.2rem);
+  text-shadow: 0 0 15px #a855f755;
 }
+
 p { margin: 0; line-height: 1.55; }
-.intro { max-width: 520px; color: #f4e8fa; }
+
+.eyebrow {
+  color: #ffc078;
+  font-size: .78rem;
+  font-weight: 900;
+  letter-spacing: 2px;
+}
+
+.intro {
+  max-width: 520px;
+  color: #f4e8fa;
+}
+
 .art {
   display: block;
   max-width: 100%;
   height: auto;
   object-fit: contain;
 }
+
 .cover-art {
   width: min(90%, 430px);
-  max-height: 42svh;
-  filter: drop-shadow(0 0 25px #ac5aff88);
-  animation: floatCat 3s ease-in-out infinite;
+  max-height: 41svh;
+  filter: drop-shadow(0 0 22px #a855f788);
+  animation: float 3s ease-in-out infinite;
 }
-@keyframes floatCat {
+
+.title-art {
+  width: min(95%, 500px);
+  max-height: 15svh;
+}
+
+@keyframes float {
   0%,100% { transform: translateY(0); }
   50% { transform: translateY(-7px); }
 }
-.title-art { width: min(95%, 500px); max-height: 15svh; }
+
 .main-btn {
   width: min(100%, 390px);
   min-height: 55px;
   padding: 14px 18px;
   color: white;
   font-weight: 900;
-  border: 2px solid #e6baff;
-  border-radius: 16px;
+  border: 2px solid #e8bdff;
+  border-radius: 15px;
   background: linear-gradient(135deg, #a855f7, #62218e);
-  box-shadow: 0 0 22px #a855f766, inset 0 1px #ffffff35;
-  transition: transform .2s, filter .2s;
+  box-shadow: 0 0 22px #a855f755;
+  transition: transform .2s;
 }
+
 .main-btn:active { transform: scale(.97); }
+
 .main-btn.orange {
-  background: linear-gradient(135deg, #ff9e40, #b6420b);
+  background: linear-gradient(135deg, #ff9f43, #b9430c);
   border-color: #ffdaaa;
 }
-.secondary-btn {
-  width: min(100%, 340px);
-  padding: 12px;
-  color: white;
-  border: 1px solid #9d5ec4;
-  border-radius: 13px;
-  background: #281535;
-  font-weight: 800;
-}
+
 .panel {
   width: 100%;
   padding: 20px 16px;
   border: 1px solid #b66be477;
   border-radius: 22px;
-  background: #160c20e8;
-  box-shadow: 0 0 26px #8d37c326;
+  background: #160c20ed;
+  box-shadow: 0 0 25px #8d37c326;
 }
-.story { max-width: 530px; }
-.hidden { display: none !important; }
-.note { color: #d9c7e5; font-size: .85rem; }
-.message { min-height: 27px; color: #f1d6ff; font-weight: 800; }
 
-/* ESCENAS MÁGICAS */
+.note { color: #d9c7e5; font-size: .85rem; }
+.message { min-height: 28px; color: #f1d6ff; font-weight: 800; }
+.hidden { display: none !important; }
+
+/* ESCENAS */
+
 .scene {
   position: relative;
   display: grid;
   place-items: center;
   width: 100%;
-  min-height: clamp(260px, 42svh, 390px);
+  min-height: clamp(250px, 40svh, 380px);
   overflow: hidden;
   isolation: isolate;
 }
+
 .witch-art {
-  width: min(92%, 440px);
+  width: min(95%, 440px);
   max-height: 43svh;
-  filter: drop-shadow(0 0 25px #a94cff88);
-  animation: witchAppear 1s ease both;
+  filter: drop-shadow(0 0 23px #a94cff88);
+  animation: witchAppear .8s ease both;
 }
+
 @keyframes witchAppear {
-  from { opacity: 0; transform: scale(.85) translateY(18px); }
-  to { opacity: 1; transform: scale(1) translateY(0); }
+  from { opacity: 0; transform: scale(.88); }
+  to { opacity: 1; transform: scale(1); }
 }
-.cat-trapped {
-  width: min(77%, 350px);
-  max-height: 39svh;
-  filter: drop-shadow(0 0 20px #ba60ff99);
-  animation: floatCat 2.5s ease-in-out infinite;
+
+.trapped-cat {
+  width: min(80%, 350px);
+  max-height: 40svh;
+  filter: drop-shadow(0 0 22px #bd68ff99);
+  animation: float 2.5s ease-in-out infinite;
 }
-.magic-beam {
+
+.beam {
   position: absolute;
   z-index: 4;
-  width: 110%;
-  height: 45%;
-  left: -5%;
-  top: 28%;
-  pointer-events: none;
+  width: 120%;
+  height: 50%;
+  left: -10%;
+  top: 25%;
   opacity: 0;
-  transform: scaleX(.2);
-  background:
-    linear-gradient(90deg, transparent, #c4f5ff, #a74bff, #f1d6ff, transparent);
-  clip-path: polygon(0 43%, 22% 34%, 39% 44%, 55% 12%, 70% 44%, 100% 32%,
-                     100% 64%, 70% 57%, 55% 85%, 39% 57%, 22% 67%, 0 57%);
-  filter: drop-shadow(0 0 17px #c778ff);
+  pointer-events: none;
+  background: linear-gradient(
+    90deg, transparent, #bdeaff, #a94cff, #f5d9ff, transparent
+  );
+  clip-path: polygon(0 43%, 30% 32%, 48% 45%, 60% 10%,
+                     73% 48%, 100% 30%, 100% 65%, 70% 60%,
+                     58% 88%, 45% 60%, 28% 69%, 0 57%);
+  filter: drop-shadow(0 0 16px #d39aff);
 }
-.magic-beam.active {
-  animation: beamShoot .9s ease-out both;
+
+.beam.active { animation: shoot .9s ease both; }
+
+@keyframes shoot {
+  0% { opacity: 0; transform: scaleX(.15); }
+  20%,65% { opacity: 1; transform: scaleX(1); }
+  100% { opacity: 0; }
 }
-@keyframes beamShoot {
-  0% { opacity: 0; transform: scaleX(.1); }
-  20% { opacity: 1; transform: scaleX(1.1); }
-  75% { opacity: 1; }
-  100% { opacity: 0; transform: scaleX(1); }
-}
-.ray-image {
+
+.ray-img {
   position: absolute;
   z-index: 5;
   width: 100%;
-  max-height: 72%;
+  max-height: 75%;
   object-fit: contain;
   opacity: 0;
   pointer-events: none;
 }
-.ray-image.active { animation: rayAppear .9s ease both; }
-@keyframes rayAppear {
+
+.ray-img.active { animation: shootImg .9s ease both; }
+
+@keyframes shootImg {
   0% { opacity: 0; transform: scale(.6); }
-  25%,65% { opacity: 1; transform: scale(1.08); }
+  25%,65% { opacity: 1; transform: scale(1.05); }
   100% { opacity: 0; transform: scale(1.2); }
 }
+
+/* CRISTAL */
+
 .crystal-stage {
   position: relative;
   display: grid;
   place-items: center;
   width: min(100%, 440px);
-  min-height: clamp(255px, 40svh, 370px);
+  min-height: clamp(260px, 40svh, 370px);
+  overflow: hidden;
 }
+
 .crystal-cat {
   position: absolute;
   width: 48%;
   max-height: 31svh;
   object-fit: contain;
-  animation: floatCat 2.3s ease-in-out infinite;
+  z-index: 1;
 }
+
 .crystal-image {
   position: relative;
   z-index: 2;
   width: 84%;
   max-height: 43svh;
   object-fit: contain;
-  filter: drop-shadow(0 0 23px #b968ff99);
+  filter: drop-shadow(0 0 22px #bd68ff99);
 }
-.crystal-css {
+
+.crystal-overlay {
   position: absolute;
   z-index: 3;
-  width: 68%;
+  width: 65%;
   aspect-ratio: 1;
-  border: 3px solid #dfb7ffb5;
+  border: 3px solid #e0baffaa;
   border-radius: 50%;
-  box-shadow: inset 0 0 35px #a94cff6b, 0 0 35px #9b49ff85;
-  background: radial-gradient(circle, #a94cff12, #b34cff36 75%, #ffffff20);
   pointer-events: none;
+  background: radial-gradient(circle, #a855f71b, #bd6bff24 75%, #fff3 100%);
+  box-shadow: inset 0 0 25px #b05cff55, 0 0 25px #a855f788;
 }
-.crystal-css::before, .crystal-css::after {
+
+.crystal-overlay::before,
+.crystal-overlay::after {
   content: "";
   position: absolute;
-  inset: 16% 25%;
-  border-left: 2px solid #f4d8ff;
-  border-top: 2px solid #f4d8ff;
-  clip-path: polygon(30% 0, 100% 18%, 63% 42%, 85% 72%, 45% 100%, 38% 62%, 0 47%);
-  opacity: .8;
+  inset: 12% 24%;
+  border-left: 2px solid #f2d9ff;
+  border-top: 2px solid #f2d9ff;
+  clip-path: polygon(30% 0,100% 18%,63% 42%,85% 72%,45% 100%,38% 62%,0 47%);
 }
-.crystal-css::after {
+
+.crystal-overlay::after {
   transform: rotate(110deg) scale(.7);
-  opacity: .45;
+  opacity: .6;
 }
+
 .shake { animation: shake .1s linear infinite; }
+
 @keyframes shake {
-  0%,100% { transform: translate(0) rotate(0); }
+  0%,100% { transform: translate(0); }
   25% { transform: translate(4px,-3px) rotate(1deg); }
   50% { transform: translate(-4px,2px) rotate(-1deg); }
-  75% { transform: translate(3px,3px) rotate(.5deg); }
+  75% { transform: translate(3px,3px); }
 }
-.flash { animation: crystalFlash .65s ease; }
-@keyframes crystalFlash {
-  0%,100% { filter: brightness(1); }
-  30% { filter: brightness(3); }
-  65% { filter: brightness(1.7); }
+
+.flash { animation: flash .7s ease; }
+
+@keyframes flash {
+  35% { filter: brightness(3); }
+  70% { filter: brightness(1.6); }
+  100% { filter: brightness(1); }
 }
+
 .explosion {
   position: absolute;
   inset: 0;
   z-index: 6;
-  pointer-events: none;
   opacity: 0;
-  background: radial-gradient(circle, #fff8c9, #d78bff88 22%, transparent 68%);
-}
-.explosion.active { animation: boom .9s ease-out; }
-@keyframes boom {
-  0% { opacity: 0; transform: scale(.2); }
-  30% { opacity: 1; transform: scale(1.5); }
-  100% { opacity: 0; transform: scale(2.5); }
+  pointer-events: none;
+  background: radial-gradient(circle, #fff9d8, #d18aff88 25%, transparent 70%);
 }
 
-/* POCIONES */
+.explosion.active { animation: boom .9s ease-out; }
+
+@keyframes boom {
+  0% { opacity: 0; transform: scale(.2); }
+  30% { opacity: 1; transform: scale(1.4); }
+  100% { opacity: 0; transform: scale(2.4); }
+}
+
+/* POCIONES: LOS FRASCOS CSS SIEMPRE SE VEN */
+
 .potion-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0,1fr));
@@ -287,35 +324,127 @@ p { margin: 0; line-height: 1.55; }
   width: 100%;
   max-width: 530px;
 }
+
 .potion {
   min-width: 0;
-  padding: 12px 5px;
+  min-height: 155px;
+  padding: 10px 5px;
   color: white;
-  border: 1px solid #b87ce6;
+  border: 1px solid #bd83eb;
   border-radius: 17px;
-  background: linear-gradient(180deg, #382047, #1b1024);
-  transition: transform .2s, box-shadow .2s;
+  background: linear-gradient(180deg, #3b204b, #190d25);
+  box-shadow: 0 0 14px #a855f733;
 }
-.potion:active { transform: scale(.94); }
+
 .potion img {
   display: block;
   width: 100%;
-  height: 115px;
+  height: 105px;
   object-fit: contain;
-  filter: drop-shadow(0 0 9px #d3a1ff65);
 }
-.potion .fallback {
-  display: none;
-  height: 115px;
-  align-items: center;
-  justify-content: center;
-  font-size: 4.3rem;
+
+.potion span {
+  display: block;
+  margin-top: 7px;
+  font-size: .9rem;
+  font-weight: 900;
 }
-.potion.green { border-color: #69dfa0; }
+
+.potion.green { border-color: #69e99c; }
 .potion.orange { border-color: #ffb35c; }
-.potion span { display: block; margin-top: 8px; font-weight: 900; }
+
+/* Frasco alternativo dibujado en CSS */
+.vial {
+  display: none;
+  position: relative;
+  width: 57px;
+  height: 77px;
+  margin: 12px auto 16px;
+  border: 3px solid #eee0ff;
+  border-radius: 13px 13px 20px 20px;
+  background: linear-gradient(to top, var(--liquid) 0 64%, #ffffff22 65%);
+  box-shadow: 0 0 17px var(--liquid);
+}
+
+.vial::before {
+  content: "";
+  position: absolute;
+  width: 25px;
+  height: 14px;
+  top: -15px;
+  left: 13px;
+  border: 3px solid #eee0ff;
+  border-radius: 4px 4px 0 0;
+  background: var(--liquid);
+}
+
+.vial::after {
+  content: "✦";
+  position: absolute;
+  top: 22px;
+  left: 17px;
+  font-size: 20px;
+  color: white;
+  text-shadow: 0 0 8px white;
+}
+
+.potion:active { transform: scale(.96); }
+
+/* MISTY LIBERADA */
+
+.freed-container {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  min-height: 290px;
+  isolation: isolate;
+}
+
+.freed-glow {
+  position: absolute;
+  z-index: -1;
+  width: 75%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle, #c06bff77, #8127a522 60%, transparent 75%);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.freed-img {
+  display: block;
+  width: min(85%, 370px);
+  max-height: 43svh;
+  object-fit: contain;
+  filter: drop-shadow(0 0 25px #c778ff);
+  animation: freedAppear .8s ease both;
+}
+
+.freed-emoji {
+  display: none;
+  font-size: 5rem;
+}
+
+.sparkle-label {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  50% { transform: scale(1.08); opacity: .7; }
+}
+
+@keyframes freedAppear {
+  from { opacity: 0; transform: scale(.65); }
+  to { opacity: 1; transform: scale(1); }
+}
 
 /* COFRES */
+
 .chest-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0,1fr));
@@ -323,6 +452,7 @@ p { margin: 0; line-height: 1.55; }
   width: 100%;
   max-width: 550px;
 }
+
 .chest {
   min-width: 0;
   min-height: 130px;
@@ -330,52 +460,90 @@ p { margin: 0; line-height: 1.55; }
   color: white;
   border: 1px solid #a75bd7;
   border-radius: 16px;
-  background: radial-gradient(ellipse at 50% 20%, #52256d, #20102b 80%);
-  box-shadow: inset 0 0 15px #c179ff1c;
-  transition: transform .2s, filter .2s;
+  background: radial-gradient(ellipse at top, #54266c, #20102b 80%);
+  box-shadow: inset 0 0 15px #c179ff22;
 }
-.chest:active { transform: scale(.95); }
+
 .chest img {
   display: block;
   width: 100%;
-  height: 95px;
+  height: 92px;
   object-fit: contain;
   filter: drop-shadow(0 0 12px #ba7aff66);
 }
-.chest .emoji-fallback {
+
+.chest-fallback {
   display: none;
-  height: 95px;
+  height: 92px;
   align-items: center;
   justify-content: center;
-  font-size: 4rem;
-}
-.chest strong { color: #ffda9f; }
-.chest.selected { animation: chestWin .65s ease; border-color: #ffe29b; }
-@keyframes chestWin {
-  50% { transform: scale(1.1); filter: brightness(1.8); }
+  font-size: 3.6rem;
 }
 
-/* RESULTADO */
-.result-card {
-  width: 100%;
-  max-width: 540px;
-  padding: 22px 14px;
-  border: 2px solid #dca4ff;
-  border-radius: 24px;
-  background: radial-gradient(ellipse at top, #632b7e, #1b0d25 78%);
-  box-shadow: 0 0 35px #a855f755;
+.chest strong { color: #ffda9f; }
+
+.chest.selected {
+  animation: chestWin .65s ease;
+  border-color: #ffe29b;
 }
-.frame { width: 100%; max-height: 110px; }
-.misty-small { width: min(50%, 190px); max-height: 180px; margin: 8px auto; }
+
+@keyframes chestWin {
+  50% { transform: scale(1.08); filter: brightness(1.8); }
+}
+
+/* MARCO DEL PREMIO: HECHO CON CSS */
+
+.result-card {
+  position: relative;
+  width: 100%;
+  max-width: 510px;
+  padding: 24px 17px;
+  border: 3px solid #b66aff;
+  border-radius: 25px;
+  background:
+    radial-gradient(ellipse at top, #54266f, #1b0d25 78%);
+  box-shadow:
+    0 0 0 4px #ff922e35,
+    0 0 30px #a855f766,
+    inset 0 0 25px #a855f722;
+  overflow: hidden;
+}
+
+.result-card::before {
+  content: "✦  🎃  ✦";
+  display: block;
+  margin-bottom: 12px;
+  color: #ffc078;
+  letter-spacing: 8px;
+}
+
+.result-card h2 { font-size: clamp(1.4rem,5vw,2rem); }
+
+.misty-small {
+  display: block;
+  width: min(48%,175px);
+  max-height: 175px;
+  margin: 12px auto;
+  object-fit: contain;
+  filter: drop-shadow(0 0 17px #b56aff);
+}
+
 .prize-value {
-  margin: 12px 0;
+  margin: 14px 0;
+  padding: 16px 8px;
   color: #ffe19b;
-  font-size: clamp(2rem, 9vw, 3.5rem);
+  font-size: clamp(2rem,9vw,3.4rem);
   font-weight: 1000;
   line-height: 1.15;
   overflow-wrap: anywhere;
+  border: 1px solid #ffcf82;
+  border-radius: 15px;
+  background: #10081799;
   text-shadow: 0 0 20px #ff922e88;
 }
+
+.result-card p { overflow-wrap: anywhere; }
+
 .whatsapp {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -383,6 +551,7 @@ p { margin: 0; line-height: 1.55; }
   width: 100%;
   max-width: 450px;
 }
+
 .wa-btn {
   min-height: 54px;
   color: white;
@@ -391,6 +560,9 @@ p { margin: 0; line-height: 1.55; }
   border-radius: 14px;
   background: linear-gradient(135deg, #25b967, #08763c);
 }
+
+/* PARTICULAS */
+
 .particles {
   position: absolute;
   inset: 0;
@@ -398,6 +570,7 @@ p { margin: 0; line-height: 1.55; }
   pointer-events: none;
   z-index: 8;
 }
+
 .particle {
   position: absolute;
   width: 9px;
@@ -405,22 +578,25 @@ p { margin: 0; line-height: 1.55; }
   border-radius: 50%;
   background: #ffe58b;
   box-shadow: 0 0 15px #ffad39;
-  animation: particleFly 1.4s ease-out forwards;
+  animation: fly 1.4s ease-out forwards;
 }
-@keyframes particleFly {
-  to { opacity: 0; transform: translate(var(--dx),var(--dy)) scale(.1); }
+
+@keyframes fly {
+  to {
+    opacity: 0;
+    transform: translate(var(--dx),var(--dy)) scale(.1);
+  }
 }
 
 @media(max-width:380px) {
-  .app { padding: 11px; }
+  .app { padding: 10px; }
   .screen { gap: 13px; }
-  .potion img, .potion .fallback { height: 88px; }
+  .potion { min-height: 140px; }
+  .potion img { height: 85px; }
+  .vial { transform: scale(.85); margin-bottom: 7px; }
   .chest-grid { gap: 7px; }
   .chest { min-height: 105px; }
-  .chest img, .chest .emoji-fallback { height: 74px; }
-}
-@media(prefers-reduced-motion:reduce) {
-  *,*::before,*::after { animation-duration:.01ms !important; animation-iteration-count:1 !important; }
+  .chest img, .chest-fallback { height: 73px; }
 }
 </style>
 </head>
@@ -435,52 +611,52 @@ p { margin: 0; line-height: 1.55; }
     <img class="art title-art" src="titulo-juego.png" alt=""
          onerror="this.style.display='none'">
     <h1>¡LIBERA A MISTY<br>Y GANA TU PREMIO!</h1>
-    <p class="intro">Una bruja, un hechizo y seis cofres misteriosos. ¿Estás listo para ayudar a Misty?</p>
+    <p class="intro">Una bruja, un hechizo y seis cofres misteriosos. ¿Ayudarás a Misty?</p>
     <button class="main-btn orange" id="start">🎃 COMENZAR A JUGAR</button>
     <p class="note">💜 COMUNIDAD MISTY 💜</p>
   </section>
 
-  <!-- ESCENA 2: LA BRUJA APARECE -->
+  <!-- ESCENA 2: APARECE LA BRUJA -->
   <section class="screen" id="witch-scene">
     <div class="eyebrow">UNA NOCHE MISTERIOSA</div>
     <h2>Algo se mueve entre las sombras…</h2>
     <div class="scene">
-      <img class="art witch-art" src="misty-bruja.png" alt="La bruja y Misty">
+      <img class="art witch-art" src="misty-bruja.png" alt="Misty y la bruja">
       <div class="particles" id="witch-particles"></div>
     </div>
     <div class="panel">
-      <p class="story">Misty descubre que una bruja prepara un hechizo misterioso. ¡Pero no sabe que está a punto de quedar atrapada!</p>
+      <p>Misty descubre a una bruja preparando un hechizo misterioso. ¡Pero algo terrible está por suceder!</p>
     </div>
-    <button class="main-btn" id="witch-next">✨ ¿QUÉ ESTÁ PASANDO?</button>
+    <button class="main-btn" id="witch-next">✨ CONTINUAR</button>
   </section>
 
-  <!-- ESCENA 3: MISTY ATRAPADA -->
+  <!-- ESCENA 3: HECHIZO -->
   <section class="screen" id="spell-scene">
     <div class="eyebrow">EL HECHIZO COMIENZA</div>
     <h2>¡OH, NO! 😱</h2>
     <div class="scene">
-      <img class="art cat-trapped" src="misty-atrapada.png" alt="Misty atrapada">
-      <div class="magic-beam" id="spell-beam"></div>
-      <img class="art ray-image" id="spell-ray" src="Rayo-magico.png" alt=""
-           onerror="this.style.display='none'">
-      <div class="crystal-css"></div>
+      <img class="art trapped-cat" src="misty-atrapada.png" alt="Misty atrapada">
+      <div class="beam" id="spell-beam"></div>
+      <img class="art ray-img" id="spell-ray" src="Rayo-magico.png" alt="">
+      <div class="crystal-overlay"></div>
     </div>
     <div class="panel">
-      <p>¡La bruja ha atrapado a Misty dentro de una esfera mágica! Solo una poción puede ayudarla a escapar.</p>
+      <p>¡La bruja ha atrapado a Misty dentro de una esfera mágica! ¡Ayudala a escapar y descubrí tu premio!</p>
     </div>
     <button class="main-btn" id="save">🔮 ¡SALVAR A MISTY!</button>
   </section>
 
-  <!-- ESCENA 4: ELEGIR POCIÓN -->
+  <!-- ESCENA 4: POCIONES -->
   <section class="screen" id="potions-scene">
     <div class="eyebrow">LA PRUEBA DE LAS TRES POCIONES</div>
     <h2>¡Elegí tu magia!</h2>
-    <p class="intro">Cada poción desata un poder mágico. Tocá una para liberar a Misty.</p>
+    <p class="intro">Tocá una poción para lanzar un hechizo contra la esfera.</p>
 
     <div class="crystal-stage" id="crystal-stage">
       <img class="crystal-cat" src="misty-atrapada.png" alt="Misty atrapada">
-      <img class="crystal-image" id="crystal" src="bola-cristal.png" alt="Bola de cristal">
-      <div class="crystal-css" id="crystal-overlay"></div>
+      <img class="crystal-image" id="crystal" src="bola-cristal.png" alt="Bola de cristal"
+           onerror="this.style.display='none'">
+      <div class="crystal-overlay" id="crystal-overlay"></div>
       <div class="explosion" id="explosion"></div>
       <div class="particles" id="magic-particles"></div>
     </div>
@@ -488,20 +664,22 @@ p { margin: 0; line-height: 1.55; }
     <div class="potion-grid">
       <button class="potion" data-color="violeta">
         <img src="Pocion-violeta.png" alt="Poción violeta"
-             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-        <div class="fallback">🧪</div>
+             onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+        <div class="vial" style="--liquid:#b44cff"></div>
         <span>💜 Violeta</span>
       </button>
+
       <button class="potion green" data-color="verde">
         <img src="Pocion-verde.png" alt="Poción verde"
-             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-        <div class="fallback">🧪</div>
+             onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+        <div class="vial" style="--liquid:#30d978"></div>
         <span>💚 Verde</span>
       </button>
+
       <button class="potion orange" data-color="naranja">
         <img src="Pocion-naranja.png" alt="Poción naranja"
-             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-        <div class="fallback">🧪</div>
+             onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+        <div class="vial" style="--liquid:#ff8a22"></div>
         <span>🧡 Naranja</span>
       </button>
     </div>
@@ -510,11 +688,19 @@ p { margin: 0; line-height: 1.55; }
     <button class="main-btn hidden" id="freed-next">🐈‍⬛ ¡VER A MISTY LIBRE!</button>
   </section>
 
-  <!-- ESCENA 5: VICTORIA -->
+  <!-- ESCENA 5: MISTY LIBERADA -->
   <section class="screen" id="freed-scene">
-    <div class="eyebrow">¡HECHIZO ROTO!</div>
-    <h2>¡LO LOGRASTE! 💜</h2>
-    <img class="art cover-art" src="Misty-libre.png" alt="Misty liberada">
+    <div class="eyebrow">✨ ¡HECHIZO ROTO! ✨</div>
+    <h2>¡LO LOGRASTE!</h2>
+
+    <div class="freed-container">
+      <div class="freed-glow"></div>
+      <img class="freed-img" src="Misty-libre.png" alt="Misty liberada"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+      <div class="freed-emoji">🐈‍⬛💜✨</div>
+      <div class="sparkle-label">✨ 💜 ✨</div>
+    </div>
+
     <div class="panel">
       <p>¡Liberaste a Misty! La magia volvió a brillar y ahora ella tiene una sorpresa preparada para vos… 🎁</p>
     </div>
@@ -527,7 +713,7 @@ p { margin: 0; line-height: 1.55; }
     <h2>🎃 ¡Elegí tu cofre!</h2>
     <p class="intro">Hay seis cofres encantados. Elegí uno y descubrí qué recompensa te espera. ¡Mucha suerte! 🍀</p>
     <div class="chest-grid" id="chest-grid"></div>
-    <p class="message" id="chest-message">Tocá uno de los cofres para abrirlo.</p>
+    <p class="message" id="chest-message">Tocá un cofre para abrirlo.</p>
   </section>
 
   <!-- ESCENA 7: PREMIO -->
@@ -535,15 +721,14 @@ p { margin: 0; line-height: 1.55; }
     <div class="eyebrow">💜 COMUNIDAD MISTY 💜</div>
     <div class="result-card" id="capture">
       <h2>¡FELICITACIONES! 🎉</h2>
-      <img class="art frame" src="marco-premio.png" alt=""
-           onerror="this.style.display='none'">
       <img class="art misty-small" src="misty-premio.png" alt="Misty con tu recompensa"
            onerror="this.onerror=null;this.src='Misty-libre.png'">
       <p>¡Misty te preparó una sorpresa!</p>
-      <div class="prize-value" id="prize-value"></div>
+      <div class="prize-value" id="prize-value">¡PREMIO!</div>
       <p id="prize-description">¡Guardá una captura de tu premio!</p>
     </div>
-    <p class="note">📸 Sacá una captura de tu premio y enviásela a la cajera.</p>
+
+    <p class="note">📸 Sacá una captura y enviásela a la cajera.</p>
     <div class="whatsapp">
       <button class="wa-btn" id="wa1">📲 LÍNEA 1</button>
       <button class="wa-btn" id="wa2">📲 LÍNEA 2</button>
@@ -555,7 +740,7 @@ p { margin: 0; line-height: 1.55; }
 </main>
 
 <script>
-/* CONFIGURACIÓN: MODIFICÁ LOS PREMIOS Y LOS ENLACES ACÁ */
+/* CONFIGURACIÓN EDITABLE */
 const CONFIG = {
   premios: [
     {nombre:"10% DE BONO", descripcion:"¡Disfrutá tu bonificación!", peso:1},
@@ -569,22 +754,23 @@ const CONFIG = {
   whatsappLinea2: ""
 };
 
-const screenIds = [
+const screens = [
   "cover","witch-scene","spell-scene","potions-scene",
   "freed-scene","chests-scene","prize-scene"
 ];
 
 function showScreen(id) {
-  screenIds.forEach(name => document.getElementById(name).classList.remove("active"));
+  screens.forEach(name => document.getElementById(name).classList.remove("active"));
   const screen = document.getElementById(id);
-  screen.classList.remove("active");
   void screen.offsetWidth;
   screen.classList.add("active");
-  window.scrollTo({top:0, behavior:"smooth"});
+  window.scrollTo({top:0,behavior:"smooth"});
 }
+
 function wait(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
+  return new Promise(resolve => setTimeout(resolve,ms));
 }
+
 function imageExists(src) {
   return new Promise(resolve => {
     const img = new Image();
@@ -593,8 +779,9 @@ function imageExists(src) {
     img.src = src;
   });
 }
-function createParticles(containerId, amount=30) {
-  const area = document.getElementById(containerId);
+
+function createParticles(id,amount=30) {
+  const area = document.getElementById(id);
   for(let i=0;i<amount;i++) {
     const dot = document.createElement("span");
     dot.className = "particle";
@@ -607,10 +794,12 @@ function createParticles(containerId, amount=30) {
   }
 }
 
+/* HISTORIA */
 document.getElementById("start").onclick = () => {
-  createParticles("witch-particles",24);
   showScreen("witch-scene");
+  createParticles("witch-particles",24);
 };
+
 document.getElementById("witch-next").onclick = () => {
   showScreen("spell-scene");
   const beam = document.getElementById("spell-beam");
@@ -622,69 +811,74 @@ document.getElementById("witch-next").onclick = () => {
   ray.style.display = "";
   ray.classList.add("active");
 };
+
 document.getElementById("save").onclick = () => {
-  resetPotions();
+  resetMagic();
   showScreen("potions-scene");
 };
 
+/* HECHIZO */
 let magicBusy = false;
 let magicComplete = false;
+
 const crystal = document.getElementById("crystal");
-const crystalStage = document.getElementById("crystal-stage");
-const crystalOverlay = document.getElementById("crystal-overlay");
+const stage = document.getElementById("crystal-stage");
+const overlay = document.getElementById("crystal-overlay");
 const explosion = document.getElementById("explosion");
 const magicMessage = document.getElementById("magic-message");
-const potionButtons = [...document.querySelectorAll(".potion")];
+const potions = [...document.querySelectorAll(".potion")];
 
-function resetPotions() {
+function resetMagic() {
   magicBusy = false;
   magicComplete = false;
   crystal.src = "bola-cristal.png";
-  crystal.style.opacity = "1";
-  crystal.classList.remove("shake","flash");
-  crystalStage.classList.remove("shake");
-  crystalOverlay.style.display = "";
+  crystal.style.display = "";
+  crystal.classList.remove("flash");
+  stage.classList.remove("shake");
+  overlay.style.display = "";
   explosion.classList.remove("active");
-  potionButtons.forEach(button => button.disabled = false);
+  potions.forEach(p=>p.disabled=false);
   document.getElementById("freed-next").classList.add("hidden");
   magicMessage.textContent = "✨ ¡La magia está en tus manos!";
 }
 
-async function choosePotion() {
+async function choosePotion(event) {
   if(magicBusy || magicComplete) return;
-  magicBusy = true;
-  potionButtons.forEach(button => button.disabled = true);
 
+  magicBusy = true;
+  potions.forEach(p=>p.disabled=true);
   magicMessage.textContent = "✨ ¡La poción lanza su energía mágica!";
+
   const beam = document.getElementById("spell-beam");
   beam.classList.remove("active");
   void beam.offsetWidth;
   beam.classList.add("active");
 
-  createParticles("magic-particles",24);
+  createParticles("magic-particles",25);
   await wait(650);
 
   if(await imageExists("bola-cristal-grietas.png")) {
     crystal.src = "bola-cristal-grietas.png";
+    crystal.style.display = "";
   }
-  crystalStage.classList.add("shake");
-  magicMessage.textContent = "⚡ ¡Aparecen grietas en el cristal!";
-  createParticles("magic-particles",28);
+
+  stage.classList.add("shake");
+  magicMessage.textContent = "⚡ ¡El cristal comienza a agrietarse!";
+  createParticles("magic-particles",30);
   await wait(1100);
 
-  crystalStage.classList.remove("shake");
+  stage.classList.remove("shake");
   crystal.classList.add("flash");
   explosion.classList.remove("active");
   void explosion.offsetWidth;
   explosion.classList.add("active");
-  createParticles("magic-particles",50);
 
   magicMessage.textContent = "💥 ¡BOOOOM! ¡EL HECHIZO SE ROMPIÓ!";
-  await wait(700);
+  createParticles("magic-particles",45);
+  await wait(800);
 
   crystal.style.opacity = "0";
-  crystalOverlay.style.display = "none";
-  await wait(250);
+  overlay.style.display = "none";
 
   magicMessage.textContent = "🐈‍⬛ ¡MISTY ESTÁ LIBRE!";
   magicComplete = true;
@@ -692,30 +886,34 @@ async function choosePotion() {
   document.getElementById("freed-next").classList.remove("hidden");
 }
 
-potionButtons.forEach(button => button.addEventListener("click",choosePotion));
+potions.forEach(p=>p.addEventListener("click",choosePotion));
 
 document.getElementById("freed-next").onclick = () => {
   showScreen("freed-scene");
   createParticles("global-particles",35);
 };
+
 document.getElementById("to-chests").onclick = () => {
   buildChests();
   showScreen("chests-scene");
 };
 
-/* PREMIOS: PESOS RELATIVOS CONFIGURABLES */
+/* PREMIOS ALEATORIOS */
 function randomPrize() {
-  const list = CONFIG.premios.filter(p => Number.isFinite(p.peso) && p.peso > 0);
-  if(!list.length) throw new Error("Configurá al menos un premio con peso positivo.");
+  const list = CONFIG.premios.filter(p=>Number.isFinite(p.peso)&&p.peso>0);
+  if(!list.length) throw new Error("Configurá un premio con peso positivo.");
+
   const total = list.reduce((sum,p)=>sum+p.peso,0);
   let value = Math.random()*total;
+
   for(const prize of list) {
     value -= prize.peso;
-    if(value < 0) return prize;
+    if(value<0) return prize;
   }
   return list[list.length-1];
 }
 
+/* SEIS COFRES */
 let chestChosen = false;
 
 function buildChests() {
@@ -723,7 +921,7 @@ function buildChests() {
   const grid = document.getElementById("chest-grid");
   grid.innerHTML = "";
   document.getElementById("chest-message").textContent =
-    "Tocá uno de los cofres para abrirlo.";
+    "¡Elegí un cofre para descubrir tu recompensa!";
 
   for(let i=1;i<=6;i++) {
     const button = document.createElement("button");
@@ -733,43 +931,46 @@ function buildChests() {
     const img = document.createElement("img");
     img.src = "cofre-cerrado.png";
     img.alt = "Cofre cerrado";
-    img.onerror = function() {
-      this.style.display = "none";
-      this.nextElementSibling.style.display = "flex";
-    };
 
     const fallback = document.createElement("div");
-    fallback.className = "emoji-fallback";
+    fallback.className = "chest-fallback";
     fallback.textContent = "🎁";
+
+    img.onerror = function() {
+      this.style.display = "none";
+      fallback.style.display = "flex";
+    };
 
     const label = document.createElement("strong");
     label.textContent = "COFRE "+i;
 
     button.append(img,fallback,label);
-    button.onclick = () => openChest(button,i);
+    button.onclick = ()=>openChest(button,i);
     grid.appendChild(button);
   }
 }
 
-async function openChest(button, number) {
+async function openChest(button,number) {
   if(chestChosen) return;
   chestChosen = true;
 
   const prize = randomPrize();
-  const buttons = [...document.querySelectorAll(".chest")];
-  buttons.forEach(b=>b.disabled=true);
+  document.querySelectorAll(".chest").forEach(b=>b.disabled=true);
 
   button.classList.add("selected");
+
   const img = button.querySelector("img");
+  const fallback = button.querySelector(".chest-fallback");
   img.onerror = function() {
     this.style.display = "none";
-    this.nextElementSibling.style.display = "flex";
-    this.nextElementSibling.textContent = "✨";
+    fallback.style.display = "flex";
+    fallback.textContent = "✨";
   };
   img.src = "Cofre-abierto.png";
 
   document.getElementById("chest-message").textContent =
-    "✨ ¡El cofre "+number+" está revelando tu recompensa!";
+    "✨ ¡El cofre "+number+" está revelando tu sorpresa!";
+
   createParticles("global-particles",35);
   await wait(1000);
 
@@ -779,19 +980,21 @@ async function openChest(button, number) {
   createParticles("global-particles",40);
 }
 
+/* WHATSAPP */
 function openWhatsApp(url) {
   if(!url) {
-    alert("Todavía falta configurar el enlace de WhatsApp en CONFIG.");
+    alert("Todavía falta configurar este enlace de WhatsApp en CONFIG.");
     return;
   }
   window.open(url,"_blank","noopener,noreferrer");
 }
+
 document.getElementById("wa1").onclick = () => openWhatsApp(CONFIG.whatsappLinea1);
 document.getElementById("wa2").onclick = () => openWhatsApp(CONFIG.whatsappLinea2);
 
-/* MODO DE PRUEBA: NO SE GUARDA NINGÚN BLOQUEO */
+/* MODO DE PRUEBA: SIN BLOQUEO DE INTENTOS */
 document.getElementById("again").onclick = () => {
-  resetPotions();
+  resetMagic();
   buildChests();
   showScreen("cover");
 };
