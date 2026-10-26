@@ -4,26 +4,27 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#160821">
-<title>Libera a Misty 🎃</title>
+<meta name="theme-color" content="#15091f">
+<title>Libera a Misty y gana tu premio</title>
 
 <style>
 :root {
-  --violet:#a855f7;
-  --lilac:#f0d6ff;
-  --orange:#ff922e;
-  --dark:#12091a;
+  --violeta:#a855f7;
+  --lila:#efd3ff;
+  --naranja:#ff922e;
+  --fondo:#15091f;
 }
 * { box-sizing:border-box; }
 body {
   margin:0;
   color:white;
-  background:var(--dark);
+  background:var(--fondo);
   font-family:system-ui,Arial,sans-serif;
   text-align:center;
 }
 button { font:inherit; cursor:pointer; touch-action:manipulation; }
-button:disabled { opacity:.5; }
+button:disabled { opacity:.5; cursor:default; }
+
 .app {
   width:100%;
   max-width:760px;
@@ -32,9 +33,7 @@ button:disabled { opacity:.5; }
   padding:15px;
   overflow:hidden;
   background:
-    linear-gradient(#14091b77,#14091be8),
-    url("fondo-halloween.png") center/cover fixed,
-    #14091b;
+    radial-gradient(ellipse at top,#502064,#15091f 75%);
 }
 .screen {
   display:none;
@@ -43,12 +42,12 @@ button:disabled { opacity:.5; }
   justify-content:center;
   align-items:center;
   gap:17px;
-  animation:sceneIn .5s ease both;
+  animation:appear .5s ease both;
 }
 .screen.active { display:flex; }
-@keyframes sceneIn {
-  from { opacity:0;transform:translateY(12px); }
-  to { opacity:1;transform:translateY(0); }
+@keyframes appear {
+  from { opacity:0; transform:translateY(12px); }
+  to { opacity:1; transform:translateY(0); }
 }
 h1 {
   margin:0;
@@ -58,18 +57,18 @@ h1 {
 }
 h2 {
   margin:0;
-  color:var(--lilac);
+  color:var(--lila);
   font-size:clamp(1.5rem,6vw,2.2rem);
   text-shadow:0 0 15px #a855f766;
 }
-p { margin:0;line-height:1.55; }
+p { margin:0; line-height:1.55; }
 .eyebrow {
   color:#ffc078;
   font-size:.78rem;
   font-weight:900;
   letter-spacing:2px;
 }
-.intro { max-width:520px;color:#f4e8fa; }
+.intro { max-width:520px; color:#f4e8fa; }
 .art {
   display:block;
   max-width:100%;
@@ -82,7 +81,7 @@ p { margin:0;line-height:1.55; }
   filter:drop-shadow(0 0 22px #a855f788);
   animation:float 3s ease-in-out infinite;
 }
-.title-art { width:min(95%,500px);max-height:15svh; }
+.title-art { width:min(95%,500px); max-height:15svh; }
 @keyframes float {
   0%,100% { transform:translateY(0); }
   50% { transform:translateY(-7px); }
@@ -110,11 +109,11 @@ p { margin:0;line-height:1.55; }
   background:#160c20ed;
   box-shadow:0 0 25px #8d37c326;
 }
-.note { color:#d9c7e5;font-size:.85rem; }
-.message { min-height:28px;color:#f1d6ff;font-weight:800; }
+.note { color:#d9c7e5; font-size:.85rem; }
+.message { min-height:28px; color:#f1d6ff; font-weight:800; }
 .hidden { display:none!important; }
 
-/* ESCENAS */
+/* ESCENAS Y RAYO */
 .scene {
   position:relative;
   display:grid;
@@ -122,7 +121,6 @@ p { margin:0;line-height:1.55; }
   width:100%;
   min-height:clamp(250px,40svh,380px);
   overflow:hidden;
-  isolation:isolate;
 }
 .witch-art {
   width:min(95%,440px);
@@ -155,8 +153,8 @@ p { margin:0;line-height:1.55; }
 }
 .beam.active { animation:shoot .9s ease both; }
 @keyframes shoot {
-  0% { opacity:0;transform:scaleX(.1); }
-  20%,65% { opacity:1;transform:scaleX(1); }
+  0% { opacity:0; transform:scaleX(.1); }
+  20%,65% { opacity:1; transform:scaleX(1); }
   100% { opacity:0; }
 }
 .ray-img {
@@ -170,9 +168,9 @@ p { margin:0;line-height:1.55; }
 }
 .ray-img.active { animation:rayFlash 1.1s ease both; }
 @keyframes rayFlash {
-  0% { opacity:0;transform:scale(.55); }
-  20%,65% { opacity:1;transform:scale(1.05); }
-  100% { opacity:0;transform:scale(1.2); }
+  0% { opacity:0; transform:scale(.55); }
+  20%,65% { opacity:1; transform:scale(1.05); }
+  100% { opacity:0; transform:scale(1.2); }
 }
 
 /* CRISTAL */
@@ -245,12 +243,12 @@ p { margin:0;line-height:1.55; }
 }
 .explosion.active { animation:boom .9s ease-out; }
 @keyframes boom {
-  0% { opacity:0;transform:scale(.2); }
-  30% { opacity:1;transform:scale(1.4); }
-  100% { opacity:0;transform:scale(2.4); }
+  0% { opacity:0; transform:scale(.2); }
+  30% { opacity:1; transform:scale(1.4); }
+  100% { opacity:0; transform:scale(2.4); }
 }
 
-/* POCIONES */
+/* POCIONES: IMAGEN ORIGINAL Y RESPALDO CSS */
 .potion-grid {
   display:grid;
   grid-template-columns:repeat(3,minmax(0,1fr));
@@ -282,6 +280,7 @@ p { margin:0;line-height:1.55; }
 }
 .potion.green { border-color:#69e99c; }
 .potion.orange { border-color:#ffb35c; }
+
 .vial {
   display:none;
   position:relative;
@@ -313,7 +312,7 @@ p { margin:0;line-height:1.55; }
   color:white;
 }
 
-/* VICTORIA */
+/* MISTY LIBERADA */
 .freed-container {
   position:relative;
   display:grid;
@@ -338,9 +337,9 @@ p { margin:0;line-height:1.55; }
   object-fit:contain;
   filter:drop-shadow(0 0 25px #c778ff);
 }
-.freed-emoji { display:none;font-size:5rem; }
+.freed-emoji { display:none; font-size:5rem; }
 @keyframes pulse {
-  50% { transform:scale(1.08);opacity:.7; }
+  50% { transform:scale(1.08); opacity:.7; }
 }
 
 /* COFRES */
@@ -374,12 +373,15 @@ p { margin:0;line-height:1.55; }
   font-size:3.6rem;
 }
 .chest strong { color:#ffda9f; }
-.chest.selected { animation:chestWin .65s ease;border-color:#ffe29b; }
+.chest.selected {
+  animation:chestWin .65s ease;
+  border-color:#ffe29b;
+}
 @keyframes chestWin {
-  50% { transform:scale(1.08);filter:brightness(1.8); }
+  50% { transform:scale(1.08); filter:brightness(1.8); }
 }
 
-/* MARCO DEL PREMIO */
+/* MARCO DEL PREMIO SIN PNG DEFORMADO */
 .result-card {
   position:relative;
   width:100%;
@@ -453,7 +455,10 @@ p { margin:0;line-height:1.55; }
   animation:fly 1.4s ease-out forwards;
 }
 @keyframes fly {
-  to { opacity:0;transform:translate(var(--dx),var(--dy)) scale(.1); }
+  to {
+    opacity:0;
+    transform:translate(var(--dx),var(--dy)) scale(.1);
+  }
 }
 @media(max-width:380px) {
   .app { padding:10px; }
@@ -472,8 +477,8 @@ p { margin:0;line-height:1.55; }
 
 <section class="screen active" id="cover">
   <div class="eyebrow">🎃 ESPECIAL DE HALLOWEEN 🎃</div>
-  <img class="art cover-art" src="misty-bruja.png" alt="Misty y la bruja">
-  <img class="art title-art" src="titulo-juego.png" alt=""
+  <img class="art cover-art" data-file="misty-bruja.png" alt="Misty y la bruja">
+  <img class="art title-art" data-file="titulo-juego.png" alt=""
        onerror="this.style.display='none'">
   <h1>¡LIBERA A MISTY<br>Y GANA TU PREMIO!</h1>
   <p class="intro">Una bruja, un hechizo y seis cofres misteriosos. ¿Ayudarás a Misty?</p>
@@ -485,11 +490,11 @@ p { margin:0;line-height:1.55; }
   <div class="eyebrow">UNA NOCHE MISTERIOSA</div>
   <h2>Algo se mueve entre las sombras…</h2>
   <div class="scene">
-    <img class="art witch-art" src="misty-bruja.png" alt="Misty y la bruja">
+    <img class="art witch-art" data-file="misty-bruja.png" alt="Misty y la bruja">
     <div class="particles" id="witch-particles"></div>
   </div>
   <div class="panel">
-    <p>Misty descubre a una bruja preparando un hechizo misterioso. ¡Algo terrible está por suceder!</p>
+    <p>Misty descubre a una bruja preparando un hechizo. ¡Algo terrible está por suceder!</p>
   </div>
   <button class="main-btn" id="witch-next">✨ CONTINUAR</button>
 </section>
@@ -498,13 +503,12 @@ p { margin:0;line-height:1.55; }
   <div class="eyebrow">EL HECHIZO COMIENZA</div>
   <h2>¡OH, NO! 😱</h2>
   <div class="scene">
-    <img class="art trapped-cat" src="misty-atrapada.png" alt="Misty atrapada">
+    <img class="art trapped-cat" data-file="misty-atrapada.png" alt="Misty atrapada">
     <div class="beam" id="spell-beam"></div>
-    <img class="art ray-img" id="spell-ray" src="Rayo-magico.png" alt="Rayo mágico"
-         onerror="this.style.display='none';document.getElementById('spell-beam').classList.add('active')">
+    <img class="art ray-img" id="spell-ray" data-file="Rayo-magico.png" alt="Rayo mágico">
   </div>
   <div class="panel">
-    <p>La bruja ha atrapado a Misty con un poderoso hechizo. ¡Ayudala a escapar y descubrí qué premio te espera!</p>
+    <p>¡La bruja atrapó a Misty con un poderoso hechizo! Ayudala a escapar y descubrí tu premio.</p>
   </div>
   <button class="main-btn" id="save">🔮 ¡SALVAR A MISTY!</button>
 </section>
@@ -515,32 +519,26 @@ p { margin:0;line-height:1.55; }
   <p class="intro">Tocá una poción para lanzar su poder contra el cristal.</p>
 
   <div class="crystal-stage" id="crystal-stage">
-    <img class="crystal-cat" src="misty-atrapada.png" alt="Misty atrapada">
-    <img class="crystal-image" id="crystal" src="bola-cristal.png"
-         alt="Bola de cristal" onerror="this.style.display='none'">
+    <img class="crystal-cat" data-file="misty-atrapada.png" alt="Misty atrapada">
+    <img class="crystal-image" id="crystal" data-file="bola-cristal.png" alt="Bola de cristal">
     <div class="crystal-overlay" id="crystal-overlay"></div>
     <div class="explosion" id="explosion"></div>
     <div class="particles" id="magic-particles"></div>
   </div>
 
   <div class="potion-grid">
-    <button class="potion" data-color="violeta">
-      <img src="Pocion-violeta.png" alt="Poción violeta"
-           onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+    <button class="potion">
+      <img data-file="Pocion-violeta.png" alt="Poción violeta">
       <div class="vial" style="--liquid:#b44cff"></div>
       <span>💜 Violeta</span>
     </button>
-
-    <button class="potion green" data-color="verde">
-      <img src="Pocion-verde.png" alt="Poción verde"
-           onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+    <button class="potion green">
+      <img data-file="Pocion-verde.png" alt="Poción verde">
       <div class="vial" style="--liquid:#30d978"></div>
       <span>💚 Verde</span>
     </button>
-
-    <button class="potion orange" data-color="naranja">
-      <img src="Pocion-naranja.png" alt="Poción naranja"
-           onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+    <button class="potion orange">
+      <img data-file="Pocion-naranja.png" alt="Poción naranja">
       <div class="vial" style="--liquid:#ff8a22"></div>
       <span>🧡 Naranja</span>
     </button>
@@ -555,8 +553,7 @@ p { margin:0;line-height:1.55; }
   <h2>¡LO LOGRASTE!</h2>
   <div class="freed-container">
     <div class="freed-glow"></div>
-    <img class="freed-img" src="Misty-libre.png" alt="Misty liberada"
-         onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+    <img class="freed-img" data-file="Misty-libre.png" alt="Misty liberada">
     <div class="freed-emoji">🐈‍⬛💜✨</div>
   </div>
   <div class="panel">
@@ -568,22 +565,21 @@ p { margin:0;line-height:1.55; }
 <section class="screen" id="chests-scene">
   <div class="eyebrow">EL TESORO DE MISTY</div>
   <h2>🎃 ¡Elegí tu cofre!</h2>
-  <p class="intro">Elegí uno de los seis cofres y descubrí qué recompensa te espera. ¡Mucha suerte! 🍀</p>
+  <p class="intro">Elegí uno de los seis cofres y descubrí tu recompensa. ¡Mucha suerte! 🍀</p>
   <div class="chest-grid" id="chest-grid"></div>
   <p class="message" id="chest-message">Tocá un cofre para abrirlo.</p>
 </section>
 
 <section class="screen" id="prize-scene">
   <div class="eyebrow">💜 COMUNIDAD MISTY 💜</div>
-  <div class="result-card" id="capture">
+  <div class="result-card">
     <h2>¡FELICITACIONES! 🎉</h2>
-    <img class="art misty-small" src="misty-premio.png" alt="Misty con tu recompensa"
-         onerror="this.onerror=null;this.src='Misty-libre.png'">
+    <img class="art misty-small" data-file="misty-premio.png" alt="Misty con tu premio">
     <p>¡Misty te preparó una sorpresa!</p>
     <div class="prize-value" id="prize-value">¡PREMIO!</div>
     <p id="prize-description">¡Guardá una captura de tu premio!</p>
   </div>
-  <p class="note">📸 Sacá una captura de tu premio y enviásela a la cajera.</p>
+  <p class="note">📸 Sacá una captura y enviásela a la cajera.</p>
   <div class="whatsapp">
     <button class="wa-btn" id="wa1">📲 LÍNEA 1</button>
     <button class="wa-btn" id="wa2">📲 LÍNEA 2</button>
@@ -595,9 +591,30 @@ p { margin:0;line-height:1.55; }
 </main>
 
 <script>
-/* CONFIGURACIÓN EDITABLE */
+/*
+  Todas las imágenes se cargan desde la raíz de tu repositorio.
+  Si tu archivo tiene otro nombre, cambialo en ASSETS.
+*/
+const ASSETS = {
+  base:"https://raw.githubusercontent.com/comunidadmistyetom/mistyhechizo/main/",
+  "misty-bruja.png":"misty-bruja.png",
+  "misty-atrapada.png":"misty-atrapada.png",
+  "Rayo-magico.png":"Rayo-magico.png",
+  "bola-cristal.png":"bola-cristal.png",
+  "bola-cristal-grietas.png":"bola-cristal-grietas.png",
+  "Pocion-violeta.png":"Pocion-violeta.png",
+  "Pocion-verde.png":"Pocion-verde.png",
+  "Pocion-naranja.png":"Pocion-naranja.png",
+  "Misty-libre.png":"Misty-libre.png",
+  "cofre-cerrado.png":"cofre-cerrado.png",
+  "Cofre-abierto.png":"Cofre-abierto.png",
+  "misty-premio.png":"misty-premio.png",
+  "titulo-juego.png":"titulo-juego.png"
+};
+
+/* Cambiá los premios, pesos y WhatsApp cuando quieras. */
 const CONFIG = {
-  premios: [
+  premios:[
     {nombre:"10% DE BONO",descripcion:"¡Disfrutá tu bonificación!",peso:1},
     {nombre:"15% DE BONO",descripcion:"¡Una recompensa mágica!",peso:1},
     {nombre:"20% DE BONO",descripcion:"¡Misty te trae suerte!",peso:1},
@@ -608,6 +625,54 @@ const CONFIG = {
   whatsappLinea1:"",
   whatsappLinea2:""
 };
+
+/* CARGA DE IMÁGENES */
+function assetUrl(filename) {
+  return ASSETS.base + encodeURIComponent(ASSETS[filename] || filename);
+}
+
+document.querySelectorAll("[data-file]").forEach(img=>{
+  const filename=img.dataset.file;
+  img.src=assetUrl(filename);
+
+  img.onerror=function() {
+    this.dataset.failed="true";
+
+    if(this.classList.contains("potion")) return;
+
+    if(this.classList.contains("freed-img")) {
+      this.style.display="none";
+      this.parentElement.querySelector(".freed-emoji").style.display="block";
+    } else if(this.classList.contains("ray-img")) {
+      this.style.display="none";
+    } else if(this.classList.contains("title-art")) {
+      this.style.display="none";
+    } else if(this.classList.contains("misty-small")) {
+      if(!this.dataset.secondTry) {
+        this.dataset.secondTry="true";
+        this.src=assetUrl("Misty-libre.png");
+      } else {
+        this.style.display="none";
+      }
+    } else if(this.classList.contains("crystal-image")) {
+      this.style.display="none";
+    } else if(this.classList.contains("potion-image")) {
+      this.style.display="none";
+    } else {
+      this.alt="No se pudo cargar: "+filename;
+      this.style.display="none";
+    }
+  };
+});
+
+/* Asegurar que cada poción muestre su imagen o un frasco de respaldo. */
+document.querySelectorAll(".potion img").forEach(img=>{
+  img.classList.add("potion-image");
+  img.onerror=function() {
+    this.style.display="none";
+    this.nextElementSibling.style.display="block";
+  };
+});
 
 const screenIds=[
   "cover","witch-scene","spell-scene","potions-scene",
@@ -621,20 +686,17 @@ function showScreen(id) {
   s.classList.add("active");
   window.scrollTo({top:0,behavior:"smooth"});
 }
-
 function wait(ms) {
   return new Promise(resolve=>setTimeout(resolve,ms));
 }
-
-function imageExists(src) {
+function imageExists(url) {
   return new Promise(resolve=>{
     const img=new Image();
     img.onload=()=>resolve(true);
     img.onerror=()=>resolve(false);
-    img.src=src;
+    img.src=url;
   });
 }
-
 function particles(id,amount=30) {
   const area=document.getElementById(id);
   for(let i=0;i<amount;i++) {
@@ -654,28 +716,25 @@ document.getElementById("start").onclick=()=>{
   showScreen("witch-scene");
   particles("witch-particles",24);
 };
-
 document.getElementById("witch-next").onclick=()=>{
   showScreen("spell-scene");
   const beam=document.getElementById("spell-beam");
   const ray=document.getElementById("spell-ray");
   beam.classList.remove("active");
   ray.classList.remove("active");
-  ray.style.display="";
   void beam.offsetWidth;
   beam.classList.add("active");
+  ray.style.display="";
   ray.classList.add("active");
 };
-
 document.getElementById("save").onclick=()=>{
   resetMagic();
   showScreen("potions-scene");
 };
 
-/* HECHIZO */
+/* POCIONES Y LIBERACIÓN */
 let magicBusy=false;
 let magicComplete=false;
-
 const crystal=document.getElementById("crystal");
 const stage=document.getElementById("crystal-stage");
 const overlay=document.getElementById("crystal-overlay");
@@ -686,7 +745,7 @@ const potionButtons=[...document.querySelectorAll(".potion")];
 function resetMagic() {
   magicBusy=false;
   magicComplete=false;
-  crystal.src="bola-cristal.png";
+  crystal.src=assetUrl("bola-cristal.png");
   crystal.style.display="";
   crystal.style.opacity="1";
   crystal.classList.remove("flash");
@@ -711,8 +770,9 @@ async function choosePotion() {
   particles("magic-particles",25);
   await wait(700);
 
-  if(await imageExists("bola-cristal-grietas.png")) {
-    crystal.src="bola-cristal-grietas.png";
+  const cracked=assetUrl("bola-cristal-grietas.png");
+  if(await imageExists(cracked)) {
+    crystal.src=cracked;
     crystal.style.display="";
   }
 
@@ -737,14 +797,12 @@ async function choosePotion() {
   magicBusy=false;
   document.getElementById("freed-next").classList.remove("hidden");
 }
-
 potionButtons.forEach(p=>p.addEventListener("click",choosePotion));
 
 document.getElementById("freed-next").onclick=()=>{
   showScreen("freed-scene");
   particles("global-particles",35);
 };
-
 document.getElementById("to-chests").onclick=()=>{
   buildChests();
   showScreen("chests-scene");
@@ -753,7 +811,7 @@ document.getElementById("to-chests").onclick=()=>{
 /* PREMIOS ALEATORIOS */
 function randomPrize() {
   const list=CONFIG.premios.filter(p=>Number.isFinite(p.peso)&&p.peso>0);
-  if(!list.length) throw new Error("Configurá al menos un premio con peso positivo.");
+  if(!list.length) throw new Error("Configurá un premio con peso positivo.");
   const total=list.reduce((sum,p)=>sum+p.peso,0);
   let r=Math.random()*total;
   for(const p of list) {
@@ -765,7 +823,6 @@ function randomPrize() {
 
 /* SEIS COFRES */
 let chestChosen=false;
-
 function buildChests() {
   chestChosen=false;
   const grid=document.getElementById("chest-grid");
@@ -779,8 +836,8 @@ function buildChests() {
     b.type="button";
 
     const img=document.createElement("img");
-    img.src="cofre-cerrado.png";
     img.alt="Cofre cerrado";
+    img.src=assetUrl("cofre-cerrado.png");
 
     const fallback=document.createElement("div");
     fallback.className="chest-fallback";
@@ -793,13 +850,11 @@ function buildChests() {
 
     const label=document.createElement("strong");
     label.textContent="COFRE "+i;
-
     b.append(img,fallback,label);
     b.onclick=()=>openChest(b,i);
     grid.appendChild(b);
   }
 }
-
 async function openChest(button,number) {
   if(chestChosen) return;
   chestChosen=true;
@@ -814,7 +869,7 @@ async function openChest(button,number) {
     fallback.style.display="flex";
     fallback.textContent="✨";
   };
-  img.src="Cofre-abierto.png";
+  img.src=assetUrl("Cofre-abierto.png");
 
   document.getElementById("chest-message").textContent=
     "✨ ¡El cofre "+number+" revela tu sorpresa!";
@@ -830,7 +885,7 @@ async function openChest(button,number) {
 /* WHATSAPP */
 function openWhatsApp(url) {
   if(!url) {
-    alert("Todavía falta configurar este enlace de WhatsApp en CONFIG.");
+    alert("Falta configurar el enlace de WhatsApp en CONFIG.");
     return;
   }
   window.open(url,"_blank","noopener,noreferrer");
@@ -838,13 +893,12 @@ function openWhatsApp(url) {
 document.getElementById("wa1").onclick=()=>openWhatsApp(CONFIG.whatsappLinea1);
 document.getElementById("wa2").onclick=()=>openWhatsApp(CONFIG.whatsappLinea2);
 
-/* MODO DE PRUEBA: SIN BLOQUEO */
+/* MODO DE PRUEBA: NO BLOQUEA INTENTOS */
 document.getElementById("again").onclick=()=>{
   resetMagic();
   buildChests();
   showScreen("cover");
 };
-
 buildChests();
 </script>
 </body>
